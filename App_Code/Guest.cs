@@ -39,35 +39,6 @@ public class Guest
         return false;
     }
 
-    public void Update(int guestId)
-    {
-        var dc = new DataConnection();
-
-        
-        dc.AddParameter("@first_name", FirstName);
-        dc.AddParameter("@last_name", LastName);
-        dc.AddParameter("@phone", Phone);
-        dc.AddParameter("@email", Email);
-        dc.AddParameter("@company", Company);
-        dc.AddParameter("@house_no", HouseNo);
-        dc.AddParameter("@street", Street);
-        dc.AddParameter("@town", Town);
-        dc.AddParameter("@postcode", Postcode);
-        dc.AddParameter("@country_id", Country);
-        dc.AddParameter("@registered_since", RegisteredSince);
-        dc.AddParameter("@date_of_birth", DateOfBirth);
-
-        if (guestId != -1)
-        {
-            dc.AddParameter("@guest_id", GuestId);
-            dc.Execute("sprocUpdateGuest");
-        }
-        else
-        {
-            dc.Execute("sprocAddGuest");
-        }
-    }
-
     public int GuestId { get; set; }
 
     public string FirstName { get; set; }

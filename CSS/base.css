@@ -1,0 +1,48 @@
+﻿
+
+
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    /*border-box	The width and height properties (and min/max properties) includes content, padding and border, but not the margin*/
+    box-sizing: inherit;
+}
+/*Setting defaults, all these will be inherited to the child elements*/
+
+
+body {
+    box-sizing: border-box;
+    height: 100vh;
+   
+  
+}
+
+.container {
+    background-image: linear-gradient( #f8f8f8,rgb(254, 254, 254));
+    bottom: 0;
+    height: 100%;
+}
+
+.navbar {
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 5rem;
+}
+
+.navbar-nav > li {
+    margin: 0 1rem;
+}
+
+.border {
+    border: solid 3px salmon;
+}
+
+.textbox-size-50 {
+    width: 50% !important;
+}
+
+.my-label {
+    display: inline;
+}

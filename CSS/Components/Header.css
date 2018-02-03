@@ -1,0 +1,13 @@
+﻿.header {
+    width: 100%;
+    
+    text-align: center;
+    padding: 1rem;
+    
+}
+.header__headline {
+    font-size: 2rem ;
+    font-weight: bold;
+    letter-spacing: .5rem;
+    color: rgb(21, 123, 202)
+}

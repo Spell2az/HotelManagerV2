@@ -8,37 +8,36 @@ using System.Web.UI.WebControls;
 public partial class GuestEdit : System.Web.UI.Page
 {
     private int _guestId;
-    public Guest Guest = new Guest();
+    
 
     protected void Page_Load(object sender, EventArgs e)
 
     {
-        FillCountries();
-        string field1 = (string) (Session["field1"]);
+        _guestId = Convert.ToInt32((string)(Session["field1"]));
 
-        Label1.Text = field1;
-        _guestId = Convert.ToInt32(field1);
-        FillTextBox(_guestId);
+        if (_guestId != -1)
+        {
+            if (!IsPostBack)
+            {
+                FillCountries();
+                FillTextBox(_guestId);
+            }
+        }
+        
+        
     }
 
     public void FillTextBox(int guestId)
     {
+        var guestCollection = new GuestCollection();
+        var guest = guestCollection.ThisGuest;
+        
         //var guest = new Guest();
-        if (Guest.Find(guestId))
+        if (guest.Find(guestId))
         {
-            //txtGuestID.Text = Guest.GuestId.ToString();
-            txtFirstName.Text = Guest.FirstName;
-            txtLastName.Text = Guest.LastName;
-            txtDOB.Text = Guest.DateOfBirth.ToString("dd/M/yyyy");
-            txtPhone.Text = Guest.Phone;
-            txtEmail.Text = Guest.Email;
-            txtCompany.Text = Guest.Company;
-            txtHouseNo.Text = Guest.HouseNo;
-            txtStreet.Text = Guest.Street;
-            txtTown.Text = Guest.Town;
-            txtPostcode.Text = Guest.Postcode;
-            ddlCountry.SelectedValue = Guest.Country.ToString();
-            txtRegistered.Text = Guest.RegisteredSince.ToString("dd/M/yyyy");
+            DisplayGuestDetails(guest);
+
+
         }
     }
 
@@ -59,21 +58,40 @@ public partial class GuestEdit : System.Web.UI.Page
 
     protected void EditUpdate_OnClick(object sender, EventArgs e)
     {
-        Guest.GuestId = _guestId;
-        Guest.FirstName = txtFirstName.Text;
-        Guest.LastName = txtLastName.Text;
-        Guest.DateOfBirth = new DateTime(2000, 12, 12);
-        Guest.Phone = txtPhone.Text;
-        Guest.Email = txtEmail.Text;
-        Guest.Company = txtCompany.Text;
-        Guest.HouseNo = txtHouseNo.Text;
-        Guest.Street = txtStreet.Text;
-        Guest.Town = txtTown.Text;
-        Guest.Postcode = txtPostcode.Text;
-        Guest.Country = Convert.ToInt32(ddlCountry.SelectedValue);
-        Guest.RegisteredSince = new DateTime(2000, 12, 12);
-        Guest.Update(Guest.GuestId);
+            var guestCollection = new GuestCollection();
+            var guest = guestCollection.ThisGuest;
+           guest.GuestId = _guestId;
+           guest.FirstName = txtFirstName.Text;
+           guest.LastName = txtLastName.Text;
+           guest.DateOfBirth = new DateTime(2000, 12, 12);
+           guest.Phone = txtPhone.Text;
+           guest.Email = txtEmail.Text;
+           guest.Company = txtCompany.Text;
+           guest.HouseNo = txtHouseNo.Text;
+           guest.Street = txtStreet.Text;
+           guest.Town = txtTown.Text;
+           guest.Postcode = txtPostcode.Text;
+           guest.Country = Convert.ToInt32(ddlCountry.SelectedValue);
+           guest.RegisteredSince = new DateTime(2000, 12, 12);
+
+        guestCollection.Update();
 
         Response.Redirect("Guest.aspx");
+    }
+
+    private void DisplayGuestDetails(Guest guest)
+    {
+        txtFirstName.Text =guest.FirstName;
+        txtLastName.Text =guest.LastName;
+        txtDOB.Text =guest.DateOfBirth.ToString("dd/M/yyyy");
+        txtPhone.Text =guest.Phone;
+        txtEmail.Text =guest.Email;
+        txtCompany.Text =guest.Company;
+        txtHouseNo.Text =guest.HouseNo;
+        txtStreet.Text =guest.Street;
+        txtTown.Text =guest.Town;
+        txtPostcode.Text =guest.Postcode;
+        ddlCountry.SelectedValue =guest.Country.ToString();
+        txtRegistered.Text =guest.RegisteredSince.ToString("dd/M/yyyy");
     }
 }

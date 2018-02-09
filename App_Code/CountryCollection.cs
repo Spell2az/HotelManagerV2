@@ -11,8 +11,6 @@ using System.Web.UI.WebControls.WebParts;
 /// </summary>
 public class CountryCollection
 {
-    private List<Country> _countryList = new List<Country>();
-
 
     public List<Country> CountryList
     {
@@ -21,15 +19,16 @@ public class CountryCollection
             var dc = new DataConnection();
             dc.Execute("sprocGetCountries");
             //CountryList =; }
+            var countryList = new List<Country>();
             foreach (DataRow row in dc.DataTable.Rows)
             {
                 var country = new Country(Convert.ToInt32(row["country_id"]),
                     Convert.ToString(row["country_name"])
                 );
-                _countryList.Add(country);
+                countryList.Add(country);
 
             }
-            return _countryList;
+            return countryList;
         }
 
     }

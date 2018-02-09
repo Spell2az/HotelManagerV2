@@ -16,7 +16,9 @@
             <asp:textbox CssClass="form-control textbox-size-50" ID="txtSearchByName" runat="server"></asp:textbox>
                 <asp:button CssClass="btn btn-secondary" OnClick="GetGuestDetails" runat="server" text="Search" />
                 <br />
-                <asp:button CssClass="btn btn-secondary" runat="server" text="Create new guest account" />
+                <asp:button CssClass="btn btn-secondary" OnClick="AddNewGuest" runat="server" text="Create new guest account" />
+                <asp:ListBox CssClass="guest-listbox" OnSelectedIndexChanged="lstGuest_OnSelectedIndexChanged" ID="lstGuest" runat="server"></asp:ListBox>
+                <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
         </div>
             </div>
         <div class="col-md border">

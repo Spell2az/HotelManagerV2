@@ -46,3 +46,39 @@ body {
 .my-label {
     display: inline;
 }
+
+.guest-edit-wrapper {
+    width: 40%;
+}
+
+    .guest-edit-wrapper span {
+        display: inline-block;
+        float: left;
+        clear: left;
+        
+        text-align: right;
+        padding: 6px 0px;
+        /*line-height: 2rem;*/
+    }
+
+.guest-edit-wrapper input,
+.guest-edit-wrapper select
+{
+    display: block;
+    float: right;
+    width: 16rem;
+    
+}
+
+.input-wrapper {
+    margin: 1rem 1rem;
+    height: 2rem;
+}
+
+.guest-listbox {
+    height: 15rem;
+    width: 20rem;
+    left: 0;
+    margin: 2rem 1rem;
+
+}

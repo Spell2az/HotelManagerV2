@@ -18,7 +18,7 @@ public class CountryCollection
     {
         get
         {
-            var dc = new clsDataConnection();
+            var dc = new DataConnection();
             dc.Execute("sprocGetCountries");
             //CountryList =; }
             foreach (DataRow row in dc.DataTable.Rows)

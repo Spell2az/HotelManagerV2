@@ -82,3 +82,29 @@ body {
     margin: 2rem 1rem;
 
 }
+
+.my-calendar {
+    width: 30%;
+    border: none !important;
+}
+
+.my-calendar > * {
+    border: none !important;
+}
+.cal-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.black {
+    background: black;
+}
+
+.red {
+    background: red;
+}
+
+.green {
+    background: green;
+}

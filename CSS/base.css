@@ -97,6 +97,25 @@ body {
     justify-content: space-evenly;
 }
 
+
+.booking-controls {
+    justify-content: space-around;
+}
+
+.booking-summary {
+    justify-content: flex-start;
+    align-content: center;
+}
+
+.booking-summary > *{
+    display: block;
+    padding: 10px;
+    
+}
+
+.booking-summary > i {
+    vertical-align: middle;
+}
 .black {
     background: black;
 }

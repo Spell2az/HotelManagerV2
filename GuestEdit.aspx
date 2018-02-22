@@ -10,6 +10,7 @@
             <%--<label >First Name</label>--%>       
     <asp:Label ID="Label2" runat="server" Text="First Name "></asp:Label>
     <asp:TextBox ID="txtFirstName"  CssClass="form-control" runat="server"></asp:TextBox>
+            <asp:Label runat="server" ID="lblErrFirstName"> Weeerrrrooorrr</asp:Label>
         </div>
     <div class="input-wrapper">
     <asp:Label ID="Label3" runat="server" Text="Last Name "></asp:Label>

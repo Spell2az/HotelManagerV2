@@ -7,19 +7,24 @@
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
     <h1>Bookings</h1>
+            <div class="row booking-controls">
+                <div>
+                    <asp:Literal runat="server">Adults: </asp:Literal>
+                    <asp:DropDownList ID="ddlAdults" runat="server"></asp:DropDownList>
+                </div>
+                <div>
+                    <asp:Literal runat="server">Children: </asp:Literal>
+                    <asp:DropDownList ID="ddlChildren" runat="server"></asp:DropDownList>
+                </div>
+                <div>
+                    <asp:Literal runat="server">Rooms: </asp:Literal>
+                    <asp:DropDownList ID="ddlRooms" runat="server"></asp:DropDownList>
+                </div>
+                
+                <asp:Button CssClass="btn btn-secondary" OnClick="searchBookingHandler" Text="Search" runat="server"/>
+            </div> 
     <div class="cal-wrapper">
-        <div>
-            <asp:Literal runat="server">Adults: </asp:Literal>
-            <asp:DropDownList ID="ddlAdults" runat="server"></asp:DropDownList>
-        </div>
-        <div>
-            <asp:Literal runat="server">Children: </asp:Literal>
-            <asp:DropDownList ID="ddlChildren" runat="server"></asp:DropDownList>
-        </div>
-        <div>
-            <asp:Literal runat="server">Rooms: </asp:Literal>
-            <asp:DropDownList ID="ddlRooms" runat="server"></asp:DropDownList>
-        </div>
+        
         <div>
             <asp:Label ID="lblArrival" runat="server" Text="Arrival date: "></asp:Label>
             <asp:Literal ID="litArrival" runat="server" Text=""></asp:Literal>
@@ -35,6 +40,9 @@
     
         </div>
    </div>
+            <div>
+               
+            </div>
         </ContentTemplate>
     </asp:UpdatePanel>      
 </asp:Content>

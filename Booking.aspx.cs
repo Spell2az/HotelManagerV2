@@ -69,4 +69,14 @@ public partial class Default2 : System.Web.UI.Page
             e.Day.IsSelectable = false;
         }
     }
+
+    protected void searchBookingHandler(object sender, EventArgs e)
+    {
+
+        var arr = calArrival.SelectedDate.ToString("D");
+        var dep = calCheckOut.SelectedDate.ToString("D");
+        var stuff = $"{ ddlAdults.SelectedValue},{ddlChildren.SelectedValue},{ddlRooms.SelectedValue}," +
+                    $"{arr},{dep}";
+        Response.Redirect("RoomSelection.aspx?bookingSearch=" +stuff);
+    }
 }

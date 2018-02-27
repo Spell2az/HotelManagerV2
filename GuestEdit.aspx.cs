@@ -23,8 +23,8 @@ public partial class GuestEdit : System.Web.UI.Page
                 FillTextBox(_guestId);
             }
         }
-        
-        
+
+        FillCountries();
     }
 
     public void FillTextBox(int guestId)
@@ -58,25 +58,33 @@ public partial class GuestEdit : System.Web.UI.Page
 
     protected void EditUpdate_OnClick(object sender, EventArgs e)
     {
-            var guestCollection = new GuestCollection();
-            var guest = guestCollection.ThisGuest;
-           guest.GuestId = _guestId;
-           guest.FirstName = txtFirstName.Text;
-           guest.LastName = txtLastName.Text;
-           guest.DateOfBirth = new DateTime(2000, 12, 12);
-           guest.Phone = txtPhone.Text;
-           guest.Email = txtEmail.Text;
-           guest.Company = txtCompany.Text;
-           guest.HouseNo = txtHouseNo.Text;
-           guest.Street = txtStreet.Text;
-           guest.Town = txtTown.Text;
-           guest.Postcode = txtPostcode.Text;
-           guest.Country = Convert.ToInt32(ddlCountry.SelectedValue);
-           guest.RegisteredSince = new DateTime(2000, 12, 12);
+
+
+        if (DataValid()){
+
+        var guestCollection = new GuestCollection();
+        var guest = guestCollection.ThisGuest;
+
+        
+
+        guest.GuestId = _guestId;
+        guest.FirstName = txtFirstName.Text;
+        guest.LastName = txtLastName.Text;
+        guest.DateOfBirth = new DateTime(2000, 12, 12);
+        guest.Phone = txtPhone.Text;
+        guest.Email = txtEmail.Text;
+        guest.HouseNo = txtHouseNo.Text;
+        guest.Street = txtStreet.Text;
+        guest.Town = txtTown.Text;
+        guest.Postcode = txtPostcode.Text;
+        guest.Country = Convert.ToInt32(ddlCountry.SelectedValue);
+        guest.RegisteredSince = new DateTime(2000, 12, 12);
 
         guestCollection.Update();
 
-        Response.Redirect("Guest.aspx");
+        Response.Redirect("Guest.aspx"); 
+        }
+
     }
 
     private void DisplayGuestDetails(Guest guest)
@@ -86,12 +94,39 @@ public partial class GuestEdit : System.Web.UI.Page
         txtDOB.Text =guest.DateOfBirth.ToString("dd/M/yyyy");
         txtPhone.Text =guest.Phone;
         txtEmail.Text =guest.Email;
-        txtCompany.Text =guest.Company;
         txtHouseNo.Text =guest.HouseNo;
         txtStreet.Text =guest.Street;
         txtTown.Text =guest.Town;
         txtPostcode.Text =guest.Postcode;
         ddlCountry.SelectedValue =guest.Country.ToString();
         txtRegistered.Text =guest.RegisteredSince.ToString("dd/M/yyyy");
+    }
+
+
+    public bool DataValid()
+    {
+
+        var guest = new Guest();
+        var guestErr = guest.checkErrors(txtFirstName.Text,
+                                        txtLastName.Text,
+                                        txtEmail.Text, 
+                                        txtPhone.Text, 
+                                        txtHouseNo.Text, 
+                                        txtStreet.Text,
+                                        txtTown.Text, 
+                                        txtPostcode.Text, 
+                                        txtDOB.Text);
+
+        errFirstName.Text = guestErr["firstName"];
+        errLastName.Text = guestErr["lastName"];
+        errDob.Text = guestErr["dob"];
+        errEmail.Text = guestErr["email"];
+        errPhone.Text = guestErr["phone"];
+        errHouseNo.Text = guestErr["houseNo"];
+        errStreet.Text = guestErr["street"];
+        errTown.Text = guestErr["town"];
+        errPostCode.Text = guestErr["postcode"];
+
+        return guest.IsValid(guestErr);
     }
 }

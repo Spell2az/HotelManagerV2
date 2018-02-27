@@ -20,7 +20,6 @@ public class GuestCollection
             LastName = Convert.ToString(row["last_name"]),
             Phone = Convert.ToString(row["phone"]),
             Email = Convert.ToString(row["email"]),
-            Company = Convert.ToString(row["company"]),
             HouseNo = Convert.ToString(row["house_no"]),
             Street = Convert.ToString(row["street"]),
             Town = Convert.ToString(row["town"]),
@@ -46,7 +45,6 @@ public class GuestCollection
         dc.AddParameter("@last_name", ThisGuest.LastName);
         dc.AddParameter("@phone", ThisGuest.Phone);
         dc.AddParameter("@email", ThisGuest.Email);
-        dc.AddParameter("@company", ThisGuest.Company);
         dc.AddParameter("@house_no", ThisGuest.HouseNo);
         dc.AddParameter("@street", ThisGuest.Street);
         dc.AddParameter("@town", ThisGuest.Town);

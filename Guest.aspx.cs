@@ -41,28 +41,18 @@ public partial class Default2 : System.Web.UI.Page
     {
         var guestCollection = new GuestCollection();
         var guest = guestCollection.ThisGuest;
-        if (guest.Find(Convert.ToInt32(txtSearchById.Text)))
+        string guestId = txtSearchById.Text.Trim();
+
+        if (guest.Find(Convert.ToInt32(guestId)))
         {
-            Session["field1"] = txtSearchById.Text;
+            Session["field1"] = guestId;
             DisplayGuestDetails(guest);
         }
-
-
-       
-        
     }
-
-  
 
     public void EditGuestDetails(object sender, EventArgs e)
     {
         Response.Redirect("GuestEdit.aspx");
-    }
-
-    protected void SaveData(object sender, EventArgs e)
-    {
-        var gst = new Guest();
-        gst.SaveMe();
     }
 
     protected void lstGuest_OnSelectedIndexChanged(object sender, EventArgs e)
@@ -80,18 +70,19 @@ public partial class Default2 : System.Web.UI.Page
 
     private void DisplayGuestDetails(Guest guest)
     {
+        string country = new Country().GetCountry(guest.Country);
+
         lblGuestID.Text = guest.GuestId.ToString();
         lblGuestFirstName.Text = guest.FirstName;
         lblGuestLastName.Text = guest.LastName;
         lblGuestDOB.Text = guest.DateOfBirth.ToString("dd/M/yyyy");
         lblGuestPhone.Text = guest.Phone;
         lblGuestEmail.Text = guest.Email;
-        lblGuestCompany.Text = guest.Company;
         lblGuestHouseNo.Text = guest.HouseNo;
         lblGuestStreet.Text = guest.Street;
         lblGuestTown.Text = guest.Town;
         lblGuestPostCode.Text = guest.Postcode;
-        lblGuestCountry.Text = guest.Country.ToString();
+        lblGuestCountry.Text = country;
         lblGuestRegistration.Text = guest.RegisteredSince.ToString("dd/M/yyyy");
     }
 
@@ -99,5 +90,39 @@ public partial class Default2 : System.Web.UI.Page
     {
         Session["field1"] = "-1";
         Response.Redirect("GuestEdit.aspx");
+    }
+
+    protected void SearchByNumber(object sender, EventArgs e)
+    {
+        var guestCollection = new GuestCollection();
+        var guest = guestCollection.ThisGuest;
+        try
+        {
+            if (guest.Find(Convert.ToInt32(txtSearchById.Text.Trim())))
+            {
+                FillGuestListBox(guest.LastName);
+
+            }
+            else
+            {
+                lstGuest.Items.Clear();
+            }
+        }
+        catch (Exception exception)
+        {
+            Console.WriteLine(exception);
+            
+        }
+       
+    }
+
+    protected void SearchByLastName(object sender, EventArgs e)
+    {
+        FillGuestListBox(txtSearchByName.Text.Trim());
+    }
+
+    protected void ListboxDisplayAll(object sender, EventArgs e)
+    {
+        FillGuestListBox("");
     }
 }

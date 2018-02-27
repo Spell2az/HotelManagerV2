@@ -2,7 +2,7 @@
 
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en"> 
 <head runat="server">
     
     <title>Hotel Manager</title>

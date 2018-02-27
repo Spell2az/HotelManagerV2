@@ -10,6 +10,7 @@ using System.Web;
 /// </summary>
 public class Validation
 {
+    
     public string Err { get; set; } = "";
 
     public Validation()
@@ -19,24 +20,34 @@ public class Validation
         //
     }
 
-    public void ValidateLength(int min, int max, string value)
+    public Validation(int min, int max, string value, string type)
+    {
+
+        ValidateLength(min, max, value);
+        if (IsValid())
+        {
+            ValidateCharacters(type, value);
+        }
+    }
+
+    private void ValidateLength(int min, int max, string value)
     {
         if (value.Length == 0)
         {
-            Err = "Must not be blank.";
+            Err = "* Must not be blank.";
         }
         else if (value.Length > max)
         {
-            Err = $"Must me less than {max} characters";
+            Err = $"* Must me less than {max} characters";
         }
         else if (value.Length < min)
         {
-            Err = $"Must be at least {min} characters";
+            Err = $"* Must be at least {min} characters";
         }
-
+        
     }
 
-    public void ValidateCharacters(string type, string value)
+    private void ValidateCharacters(string type, string value)
 
     {
         RegexOptions options = RegexOptions.IgnoreCase;//| RegexOptions.Singleline;
@@ -48,26 +59,39 @@ public class Validation
         //[-'A-Z] name
         if (type == "name" && regexName.IsMatch(value))
         {
-            Err = "Must contain only letters - and ' characters.";
+            Err = "* Must contain only letters - and ' characters.";
         }
         else if (type == "postcode" & regexPostCode.IsMatch(value))
         {
-            Err = "Must contain only alphanumeric characers.";
+            Err = "* Must contain only alphanumeric characers.";
         }
 
         else if (type == "number" & regexNumber.IsMatch(value))
         {
-            Err = "Only numbers and + are allowed";
+            Err = "* Only numbers and + are allowed";
+        }
+        else if (type == "email")
+        {
+            CheckEmail(value);
+        }
+        else if (type == "date")
+        {
+            CheckDate(value);
+        }
+        else
+        {
+            
+            Console.WriteLine(type +" "+ value);
         }
         //[0-9A-Z] postcode
         //[0-9] number
         //email
     }
 
-    private bool isValid(string error)
+    public bool IsValid()
     {
 
-        return error.Length == 0;
+        return Err.Length == 0;
     }
 
     public bool CheckEmail(string email)
@@ -75,14 +99,28 @@ public class Validation
         try
         {
             var emailAddress = new MailAddress(email);
+            
+
         }
         catch (Exception e)
         {
-            Err = "Email is not valid.";
+            Err = "* Email is not valid.";
             return false;
 
         }
 
         return true;
+    }
+
+    public bool CheckDate(string date)
+    {
+        DateTime dateValue;
+        if (DateTime.TryParse(date, out dateValue))
+        {
+            return true;
+        }
+
+        Err = "* Enter valid date in format DD/MM/YYYY.";
+        return false;
     }
 }

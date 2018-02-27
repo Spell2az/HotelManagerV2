@@ -37,6 +37,7 @@ body {
 
 .border {
     border: solid 3px salmon;
+    
 }
 
 .textbox-size-50 {
@@ -48,31 +49,27 @@ body {
 }
 
 .guest-edit-wrapper {
-    width: 40%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-    .guest-edit-wrapper span {
-        display: inline-block;
-        float: left;
-        clear: left;
-        
-        text-align: right;
-        padding: 6px 0px;
-        /*line-height: 2rem;*/
-    }
-
-.guest-edit-wrapper input,
-.guest-edit-wrapper select
-{
-    display: block;
-    float: right;
-    width: 16rem;
     
-}
+
 
 .input-wrapper {
     margin: 1rem 1rem;
-    height: 2rem;
+    display: flex;
+    justify-content: center;
+
+}
+
+.input-wrapper span {
+
+    width: 40%;
+    text-align: left;
+    font-size: 1.3rem;
 }
 
 .guest-listbox {
@@ -126,4 +123,24 @@ body {
 
 .green {
     background: green;
+}
+
+
+.edit-wrapper {
+    height: 100%;
+    margin: 0 auto;
+}
+
+
+.input-wrapper span.err-label {
+    padding-top: .5rem;
+    padding-left: 1rem;
+    font-size: .8rem !important;
+    width: 100% !important;
+    color: #ff3535;
+    font-weight: bold;
+}
+
+.search-wrapper > input {
+    display: inline-block;
 }

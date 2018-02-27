@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -11,5 +12,17 @@ public partial class RoomSelection : System.Web.UI.Page
     {
         var myQuery = Request.QueryString["bookingSearch"];
         Response.Write(myQuery);
+
+        Repeater1.DataSource = GetRoomTypes();
+        Repeater1.DataBind();
+    }
+
+
+
+    private DataTable GetRoomTypes()
+    {
+        var dc = new DataConnection();
+        dc.Execute("sprocGetRoomTypes");
+        return dc.DataTable;
     }
 }

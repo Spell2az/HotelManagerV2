@@ -16,6 +16,18 @@ public partial class Default2 : System.Web.UI.Page
         {
             FillGuestListBox("");
             lstGuest.AutoPostBack = true;
+
+            var sessionKeys = "";
+            foreach (string key in Session.Keys)
+            {
+                //Reset Session variables
+                //Session[key] = "";
+                //to access session from Business layer =>  HttpContext.Current.Session
+
+                sessionKeys += key;
+            }
+
+            Response.Write(sessionKeys);
             // lblTest.Text = Convert.ToString(lstAddresses.SelectedIndex);
         }
     }

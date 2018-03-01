@@ -21,7 +21,7 @@
                     <asp:DropDownList ID="ddlRooms" runat="server"></asp:DropDownList>
                 </div>
                 
-                <asp:Button CssClass="btn btn-secondary" OnClick="searchBookingHandler" Text="Search" runat="server"/>
+                <asp:Button CssClass="btn btn-secondary" OnClick="searchBookingHandler" Text="Check Availability" runat="server"/>
             </div> 
     <div class="cal-wrapper">
         

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="RoomSelection.aspx.cs" Inherits="RoomSelection" %>
+﻿<%@ Page Title="" EnableEventValidation="true" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="RoomSelection.aspx.cs" Inherits="RoomSelection" %>
 <%@ Import Namespace="System.ComponentModel" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
@@ -15,14 +15,36 @@
         <asp:Label ID="lblRoomCount" runat="server">2</asp:Label>
         <i class="fas fa-bed"></i>
     </div>
-    <asp:Repeater ID="Repeater1" runat="server">
-        
+
+
+
+    <asp:Repeater ID="Repeater1" OnItemCommand="Repeater1_OnItemCommand" runat="server">
+
         <ItemTemplate>
-            <div class="row">
-                <h1>
-            <asp:Label runat="server" Text='<% #Eval("room_name") %>'></asp:Label>
-                </h1>
-                    </div>
+            <div class="row temp-item">
+
+                <div class="temp-item-content">
+                    
+                    <asp:Image ID="Image1" CssClass="temp-item-content--img" ImageUrl='<%# $"Img/{Eval("room_img")}" %>' runat="server" />
+                   
+                    <h3>
+                        <asp:Label runat="server" Text='<% #Eval("room_name") %>'></asp:Label>
+
+                    </h3>
+                    <p>
+                        <asp:Literal runat="server" Text=' <% #Eval("room_description") %>'></asp:Literal></p>
+                </div>
+
+                <asp:LinkButton href=' <%# $"BookingSummary.aspx?{Eval("room_type_id")}" %>' class="temp-item-button"  CommandName="ID" runat="server">
+                        <div class="temp-item-button--price">
+                            <p class="room-price"> <asp:Literal runat="server" Text=' <%# $"{Eval("room_base_price"):C}" %>'></asp:Literal></p>
+                        </div>
+                        <div class="temp-item-button--icon">
+                            <i class="icon-position fas fa-chevron-right"></i>
+                        </div>
+
+                    </asp:LinkButton>
+            </div>
         </ItemTemplate>
 
     </asp:Repeater>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -59,6 +60,7 @@ public partial class Default2 : System.Web.UI.Page
         if (e.Day.Date.CompareTo(DateTime.Today.AddDays(1)) < 0)
         {
             e.Day.IsSelectable = false;
+            e.Cell.BackColor = Color.Coral;
         }
     }
 
@@ -67,6 +69,7 @@ public partial class Default2 : System.Web.UI.Page
         if (e.Day.Date.CompareTo(DateTime.Today) < 0)
         {
             e.Day.IsSelectable = false;
+            e.Cell.BackColor = Color.Coral;
         }
     }
 
@@ -77,6 +80,16 @@ public partial class Default2 : System.Web.UI.Page
         var dep = calCheckOut.SelectedDate.ToString("D");
         var stuff = $"{ ddlAdults.SelectedValue},{ddlChildren.SelectedValue},{ddlRooms.SelectedValue}," +
                     $"{arr},{dep}";
+
+        var noOfAdults = Convert.ToInt32(ddlAdults.SelectedValue);
+        var noOfChildren = Convert.ToInt32(ddlChildren.SelectedValue);
+
+        Session["dates"] = arr + " " + dep;
+        Session["noOfPeople"] = noOfChildren+ noOfAdults;
+        Session["noOfRooms"] = ddlRooms;
+            
+
+        // set session variables for date in, date out, number of rooms and how many people is the booking for
         Response.Redirect("RoomSelection.aspx?bookingSearch=" +stuff);
     }
 }

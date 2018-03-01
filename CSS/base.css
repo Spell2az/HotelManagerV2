@@ -144,3 +144,72 @@ body {
 .search-wrapper > input {
     display: inline-block;
 }
+
+
+.temp-header {
+    background: darkcyan;
+    color: #f8f8f8;
+}
+
+.temp-item {
+    display: flex;
+    border: 1px solid #ccc;
+    
+    margin: 10px 0;
+    flex-direction: row;
+}
+
+.temp-item-content {
+    width: 75%;
+    
+    padding: 15px;
+    
+}
+
+
+.temp-item-button:active,
+.temp-item-button:link,
+.temp-item-button:hover,
+.temp-item-button:visited {
+    
+    display: flex;
+    width: 25%;
+    text-decoration: none;
+    color: #fff;
+}
+
+.temp-item-button--icon {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    background: #ccc;
+    color: white;
+    font-size: 70px;
+}
+
+
+.temp-item-button--price {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    background: #b1f3ad;
+}
+
+p.room-price {
+    margin-bottom: 0px !important;
+}
+
+
+.temp-item-content--img {
+    
+    max-height: 200px;
+    width: auto;
+    overflow: hidden;
+    display: block;
+    float: left;
+    margin-right: 20px;
+}

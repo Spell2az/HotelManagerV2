@@ -35,7 +35,7 @@ public partial class Default2 : System.Web.UI.Page
 
     private void FillDropDownWithRange(DropDownList ddl, int count)
     {
-        var ddlRange = Enumerable.Range(1, count);
+        var ddlRange = Enumerable.Range(0, count);
         foreach (var item in ddlRange)
         {
             ddl.Items.Add(new ListItem(item.ToString()));
@@ -76,20 +76,22 @@ public partial class Default2 : System.Web.UI.Page
     protected void searchBookingHandler(object sender, EventArgs e)
     {
 
-        var arr = calArrival.SelectedDate.ToString("D");
-        var dep = calCheckOut.SelectedDate.ToString("D");
-        var stuff = $"{ ddlAdults.SelectedValue},{ddlChildren.SelectedValue},{ddlRooms.SelectedValue}," +
-                    $"{arr},{dep}";
+        var dateFrom = calArrival.SelectedDate.ToString("D");
+        var dateTo = calCheckOut.SelectedDate.ToString("D");
+        //var stuff = $"{ ddlAdults.SelectedValue},{ddlChildren.SelectedValue},{ddlRooms.SelectedValue}," +
+                   // $"{arr},{dep}";
 
         var noOfAdults = Convert.ToInt32(ddlAdults.SelectedValue);
         var noOfChildren = Convert.ToInt32(ddlChildren.SelectedValue);
 
-        Session["dates"] = arr + " " + dep;
+        Session["dateFrom"] = dateFrom;
+        Session["dateTo"] = dateTo;
         Session["noOfPeople"] = noOfChildren+ noOfAdults;
-        Session["noOfRooms"] = ddlRooms;
+        Session["noOfRooms"] = ddlRooms.SelectedValue;
+        
             
 
         // set session variables for date in, date out, number of rooms and how many people is the booking for
-        Response.Redirect("RoomSelection.aspx?bookingSearch=" +stuff);
+       Response.Redirect("RoomSelection.aspx");
     }
 }

@@ -56,7 +56,7 @@
                 <p id="">Registered on:
                     <asp:Label ID="lblGuestRegistration" CssClass="my-label" runat="server" Text=""></asp:Label></p>
 
-                <asp:Button CssClass="btn btn-secondary" OnClick="EditGuestDetails" runat="server" Text="Edit" />
+                <asp:Button CssClass="btn btn-secondary" OnClick="AddNewGuest" runat="server" Text="Add New Guest" />
                 <asp:Button CssClass="btn btn-secondary" runat="server" Text="View Reservations" />
                 <asp:Label ID="Label2" runat="server" Text=""></asp:Label>
                 <asp:Button ID="myBtn" CssClass="btn btn-secondary" OnClick="EditGuestDetails" runat="server" Text="Edit" />

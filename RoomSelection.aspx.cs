@@ -10,8 +10,27 @@ public partial class RoomSelection : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        var myQuery = Request.QueryString["bookingSearch"];
-        Response.Write(myQuery);
+
+        int noOfPeople = ((int)Session["noOfPeople"]);
+
+        
+        var dateFrom = Convert.ToDateTime(Session["dateFrom"]);
+        var dateTo = Convert.ToDateTime(Session["dateTo"]);
+        var noOfRooms = Convert.ToInt32(Session["noOfRooms"]);
+
+        var noOfDays = (dateTo - dateFrom).TotalDays;
+
+
+        lblArrivalDate.Text = dateFrom.ToString("D");
+        lblDepartureDate.Text = dateTo.ToString("D");
+
+        lblGuestCount.Text = noOfPeople.ToString();
+        var pluralLiteralNight = noOfDays < 2 ? "" : "s";
+        lblNoOfNights.Text = $"{noOfDays} Night{pluralLiteralNight}";
+
+       lblRoomCount.Text = noOfRooms.ToString();
+        // var myQuery = Request.QueryString["bookingSearch"];
+        // Response.Write(myQuery);
 
 
         //On load get session variables and get available rooms/ room types.
@@ -48,10 +67,8 @@ public partial class RoomSelection : System.Web.UI.Page
     protected void Repeater1_OnItemCommand(object source, RepeaterCommandEventArgs e)
     {
         
-        
-            Response.Write(((LinkButton)e.CommandSource).ID);
-        
 
-        
+
+
     }
 }

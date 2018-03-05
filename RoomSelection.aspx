@@ -7,12 +7,13 @@
     
     <div class="row booking-summary">
         
-        <asp:Label ID="lblStayDates" runat="server">12/12/2018 - 12/12/2019</asp:Label>
-        
-        <asp:Label ID="lblGuestCount" runat="server">4</asp:Label>
+        <asp:Label ID="lblArrivalDate" runat="server"></asp:Label>
+        <asp:Label ID="lblDepartureDate" runat="server"></asp:Label>
+        <asp:Label ID="lblNoOfNights" runat="server"></asp:Label>
+        <asp:Label ID="lblGuestCount" runat="server"></asp:Label>
         <i class="fas fa-male"></i>
         
-        <asp:Label ID="lblRoomCount" runat="server">2</asp:Label>
+        <asp:Label ID="lblRoomCount" runat="server"></asp:Label>
         <i class="fas fa-bed"></i>
     </div>
 
@@ -35,7 +36,7 @@
                         <asp:Literal runat="server" Text=' <% #Eval("room_description") %>'></asp:Literal></p>
                 </div>
 
-                <asp:LinkButton href=' <%# $"BookingSummary.aspx?{Eval("room_type_id")}" %>' class="temp-item-button"  CommandName="ID" runat="server">
+                <asp:LinkButton href=' <%# $"BookingSummary.aspx?roomType={Eval("room_type_id")}" %>' class="temp-item-button"  CommandName="ID" runat="server">
                         <div class="temp-item-button--price">
                             <p class="room-price"> <asp:Literal runat="server" Text=' <%# $"{Eval("room_base_price"):C}" %>'></asp:Literal></p>
                         </div>

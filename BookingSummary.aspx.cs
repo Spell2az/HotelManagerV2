@@ -7,8 +7,13 @@ using System.Web.UI.WebControls;
 
 public partial class BookingSummary : System.Web.UI.Page
 {
+
+    private Dictionary<string, List<string>> _availableRoomsDictionary;
     protected void Page_Load(object sender, EventArgs e)
     {
+        var room = new Room();
+        room.RoomTypeSelected += OnRoomTypeSelected;
+
         int noOfPeople = ((int) Session["noOfPeople"]);
         
 
@@ -39,5 +44,14 @@ public partial class BookingSummary : System.Web.UI.Page
         lblRoomType.Text = roomDescription;
         lblTotalPrice.Text = (roomPricePerNight * noOfRooms * noOfDays).ToString("C");
         //lblRoomType.Text = roomType;
+
+        var rooms = _availableRoomsDictionary.Values.ToString();
+        Response.Write(rooms);
+
+    }
+
+    private void OnRoomTypeSelected(object sender, RoomTypeSelectedEventArgs e)
+    {
+        _availableRoomsDictionary = e.AvailableRooms;
     }
 }

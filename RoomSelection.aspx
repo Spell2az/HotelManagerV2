@@ -19,7 +19,7 @@
 
 
 
-    <asp:Repeater ID="Repeater1" OnItemCommand="Repeater1_OnItemCommand" runat="server">
+    <asp:Repeater ID="Repeater1" runat="server">
 
         <ItemTemplate>
             <div class="row temp-item">
@@ -36,7 +36,7 @@
                         <asp:Literal runat="server" Text=' <% #Eval("room_description") %>'></asp:Literal></p>
                 </div>
 
-                <asp:LinkButton href=' <%# $"BookingSummary.aspx?roomType={Eval("room_type_id")}" %>' class="temp-item-button"  CommandName="ID" runat="server">
+                <asp:LinkButton OnClick="OnClick"  CommandArgument='<%# Eval("room_type_id")%>' class="temp-item-button" runat="server">
                         <div class="temp-item-button--price">
                             <p class="room-price"> <asp:Literal runat="server" Text=' <%# $"{Eval("room_base_price"):C}" %>'></asp:Literal></p>
                         </div>
@@ -49,5 +49,7 @@
         </ItemTemplate>
 
     </asp:Repeater>
+    <asp:GridView ID="GridView1" runat="server"></asp:GridView>
+
 </asp:Content>
 

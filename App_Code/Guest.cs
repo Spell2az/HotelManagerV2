@@ -96,7 +96,7 @@ public class Guest
         };
         
         var validateFirstName = new Validation(2, 50, firstName, "name");
-        var validateLastName = new Validation(3, 50, lastName, "name");
+        var validateLastName = new Validation(2, 50, lastName, "name");
         var validateEmail = new Validation(6, 50, email, "email");
         var validatePhone = new Validation(6, 25, phone, "number");
         var validateHouseNo = new Validation(1, 6, houseNo, "postcode");

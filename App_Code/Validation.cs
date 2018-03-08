@@ -38,7 +38,7 @@ public class Validation
         }
         else if (value.Length > max)
         {
-            Err = $"* Must me less than {max} characters";
+            Err = $"* Must be no more than {max} characters";
         }
         else if (value.Length < min)
         {
@@ -51,7 +51,7 @@ public class Validation
 
     {
         RegexOptions options = RegexOptions.IgnoreCase;//| RegexOptions.Singleline;
-        var regexName = new Regex(@"[^- 'A-Z]", options);
+        var regexName = new Regex(@"[^-. 'A-Z]", options);
         var regexPostCode = new Regex(@"[^ 0-9A-Z]", RegexOptions.IgnoreCase);
         var regexNumber = new Regex(@"[^+ 0-9]");
 
@@ -59,7 +59,7 @@ public class Validation
         //[-'A-Z] name
         if (type == "name" && regexName.IsMatch(value))
         {
-            Err = "* Must contain only letters - and ' characters.";
+            Err = "* Only letters and ' - . characters are allowed.";
         }
         else if (type == "postcode" & regexPostCode.IsMatch(value))
         {

@@ -13,15 +13,18 @@ public partial class Default2 : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        FillDropDownWithRange(ddlAdults, 10);
-        FillDropDownWithRange(ddlChildren, 10);
-        FillDropDownWithRange(ddlRooms, 10);
-        //Adults.Select((int a)  => { dlAdults.Items.Add(new ListItem(a.ToString()))};
+        
+       
 
         var defaultDate = DateTime.Today;
 
         if (!Page.IsPostBack)
         {
+
+            FillDropDownWithRange(ddlAdults, 1, 10);
+            FillDropDownWithRange(ddlChildren, 0, 10);
+            FillDropDownWithRange(ddlRooms, 1, 10);
+
             calArrival.SelectedDate = defaultDate;
             calArrival.VisibleDate = defaultDate;
             litArrival.Text = defaultDate.ToString("D");
@@ -33,9 +36,9 @@ public partial class Default2 : System.Web.UI.Page
         }
     }
 
-    private void FillDropDownWithRange(DropDownList ddl, int count)
+    private void FillDropDownWithRange(DropDownList ddl, int start, int end)
     {
-        var ddlRange = Enumerable.Range(0, count);
+        var ddlRange = Enumerable.Range(start, end);
         foreach (var item in ddlRange)
         {
             ddl.Items.Add(new ListItem(item.ToString()));

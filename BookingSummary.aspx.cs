@@ -46,9 +46,10 @@ public partial class BookingSummary : System.Web.UI.Page
         lblDateFrom.Text = dateFrom.ToString("D");
         lblDateTo.Text = dateTo.ToString("D");
         lblNoOfRooms.Text = noOfRooms.ToString();
-
+        
         lblPricePerNight.Text = roomPricePerNight.ToString("C");
         lblRoomType.Text = roomDescription;
+        
         lblTotalPrice.Text = (roomPricePerNight * noOfRooms * noOfDays).ToString("C");
        
     }
@@ -58,5 +59,40 @@ public partial class BookingSummary : System.Web.UI.Page
     protected void btnCancel_OnClick(object sender, EventArgs e)
     {
         Response.Redirect("Guest.aspx");
+    }
+
+    protected void chkPets_OnCheckedChanged(object sender, EventArgs e)
+    {
+       
+    }
+
+    public void UpdatePrice(bool check)
+    {
+        if (check)
+        {
+            
+        }
+    }
+
+    protected void btnConfirm_OnClick(object sender, EventArgs e)
+    {
+        //get the data
+        int guestId = Convert.ToInt32(Session["guestId"]);
+        
+        //add parameters
+
+        // execute
+
+        //reserve rooms
+    }
+
+    private void AddReservation()
+    {
+        
+    }
+
+    private void AddReserveRooms()
+    {
+        
     }
 }

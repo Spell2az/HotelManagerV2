@@ -39,6 +39,12 @@
                     <asp:Label ID="lblRoomType" runat="server" Text="Label"></asp:Label></td>
             </tr>
             <tr>
+                <td>Pets</td>
+                <td>
+                    <asp:CheckBox OnCheckedChanged="chkPets_OnCheckedChanged" ID="chkPets" runat="server" />
+                    <asp:Label ID="Label1" runat="server" Text="Pets will be charged 10 pounds a night"></asp:Label></td>
+            </tr>
+            <tr>
                 <td>Price per Night</td>
                 <td> <asp:Label ID="lblPricePerNight" runat="server" Text="Label"></asp:Label> </td>
             </tr>
@@ -52,7 +58,7 @@
     </div>
     <div class="row summary-buttons-wrapper">
         <asp:Button ID="btnCancel" OnClick="btnCancel_OnClick" runat="server" Text="Cancel" />
-        <asp:Button ID="btnConfirm" runat="server" Text="Confirm Booking" />
+        <asp:Button ID="btnConfirm" OnClick="btnConfirm_OnClick" runat="server" Text="Confirm Booking" />
     </div>
 </asp:Content>
 

@@ -8,22 +8,21 @@ using System.Web.UI.WebControls;
 public partial class BookingSummary : System.Web.UI.Page
 {
 
-    private Dictionary<string, List<string>> _availableRoomsDictionary;
+   
     protected void Page_Load(object sender, EventArgs e)
     {
-        var room = new Room();
-        room.RoomTypeSelected += OnRoomTypeSelected;
+    
+        int noOfPeople = ((int)Session["noOfPeople"]);
 
-        int noOfPeople = ((int) Session["noOfPeople"]);
         
 
         var dateFrom = Convert.ToDateTime(Session["dateFrom"]);
         var dateTo = Convert.ToDateTime(Session["dateTo"]);
 
         var noOfRooms = Convert.ToInt32(Session["noOfRooms"]);
- 
-        var roomTypeId = Request.QueryString["roomType"];
 
+        var roomTypeId = Request.QueryString["roomType"];
+       
         var dc = new DataConnection();
         dc.AddParameter("@room_type_id", roomTypeId);
         dc.Execute("sprocGetRoomTypeById");
@@ -33,7 +32,15 @@ public partial class BookingSummary : System.Web.UI.Page
 
         var noOfDays = (dateTo - dateFrom).TotalDays;
 
-        lblNumberOfDays.Text =noOfDays.ToString();
+        AssignBookingDataToLabels(noOfPeople, dateFrom, dateTo, noOfRooms, roomDescription, roomPricePerNight, noOfDays);
+
+       
+
+    }
+
+    private void AssignBookingDataToLabels(int noOfPeople, DateTime dateFrom, DateTime dateTo, int noOfRooms, string roomDescription, double roomPricePerNight, double noOfDays)
+    {
+        lblNumberOfDays.Text = noOfDays.ToString();
 
         lblNoOfGuests.Text = Convert.ToString(noOfPeople);
         lblDateFrom.Text = dateFrom.ToString("D");
@@ -43,15 +50,13 @@ public partial class BookingSummary : System.Web.UI.Page
         lblPricePerNight.Text = roomPricePerNight.ToString("C");
         lblRoomType.Text = roomDescription;
         lblTotalPrice.Text = (roomPricePerNight * noOfRooms * noOfDays).ToString("C");
-        //lblRoomType.Text = roomType;
-
-        var rooms = _availableRoomsDictionary.Values.ToString();
-        Response.Write(rooms);
-
+       
     }
 
-    private void OnRoomTypeSelected(object sender, RoomTypeSelectedEventArgs e)
+    
+
+    protected void btnCancel_OnClick(object sender, EventArgs e)
     {
-        _availableRoomsDictionary = e.AvailableRooms;
+        Response.Redirect("Guest.aspx");
     }
 }

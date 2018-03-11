@@ -57,7 +57,7 @@ public partial class Default2 : System.Web.UI.Page
 
         if (guest.Find(Convert.ToInt32(guestId)))
         {
-            Session["field1"] = guestId;
+            Session["guestId"] = guestId;
             DisplayGuestDetails(guest);
         }
     }
@@ -75,7 +75,7 @@ public partial class Default2 : System.Web.UI.Page
         var guest = guestCollection.ThisGuest;
         guest.Find(Convert.ToInt32(lstGuest.SelectedValue));
 
-        Session["field1"] = lstGuest.SelectedValue;
+        Session["guestId"] = lstGuest.SelectedValue;
         DisplayGuestDetails(guest);
 
     }
@@ -100,7 +100,7 @@ public partial class Default2 : System.Web.UI.Page
 
     protected void AddNewGuest(object sender, EventArgs e)
     {
-        Session["field1"] = "-1";
+        Session["guestId"] = "-1";
         Response.Redirect("GuestEdit.aspx");
     }
 

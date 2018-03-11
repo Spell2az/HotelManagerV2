@@ -31,15 +31,15 @@ public partial class RoomSelection : System.Web.UI.Page
     private void FillInfoStrip()
     {
         int noOfPeople = Convert.ToInt32(Session["noOfPeople"]);
-
-        var dateFrom = Convert.ToDateTime(Session["dateFrom"]);
+         
+        var dateFrom = Convert.ToString(Session["dateFrom"]);
         var dateTo = Convert.ToDateTime(Session["dateTo"]);
         var noOfRooms = Convert.ToInt32(Session["noOfRooms"]);
 
-        var noOfDays = (dateTo - dateFrom).TotalDays;
+        var noOfDays = 2;//(dateTo - dateFrom).TotalDays;
 
 
-        lblArrivalDate.Text = dateFrom.ToString("D");
+        lblArrivalDate.Text = dateFrom.ToString();
         lblDepartureDate.Text = dateTo.ToString("D");
 
         lblGuestCount.Text = noOfPeople.ToString();

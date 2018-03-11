@@ -13,7 +13,7 @@ public partial class GuestEdit : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
 
     {
-        _guestId = Convert.ToInt32((string)(Session["field1"]));
+        _guestId = Convert.ToInt32(Session["guestId"]);
 
         if (_guestId != -1)
         {
@@ -70,7 +70,7 @@ public partial class GuestEdit : System.Web.UI.Page
         guest.GuestId = _guestId;
         guest.FirstName = txtFirstName.Text;
         guest.LastName = txtLastName.Text;
-        guest.DateOfBirth = new DateTime(2000, 12, 12);
+        guest.DateOfBirth = Convert.ToDateTime(txtDOB.Text);
         guest.Phone = txtPhone.Text;
         guest.Email = txtEmail.Text;
         guest.HouseNo = txtHouseNo.Text;
@@ -78,7 +78,7 @@ public partial class GuestEdit : System.Web.UI.Page
         guest.Town = txtTown.Text;
         guest.Postcode = txtPostcode.Text;
         guest.Country = Convert.ToInt32(ddlCountry.SelectedValue);
-        guest.RegisteredSince = new DateTime(2000, 12, 12);
+        guest.RegisteredSince = DateTime.Today;
 
         guestCollection.Update();
 

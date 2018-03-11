@@ -3,6 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div class="summary-heading">
         <h2>Booking Summary</h2>
     </div>
@@ -38,11 +39,15 @@
                 <td>
                     <asp:Label ID="lblRoomType" runat="server" Text="Label"></asp:Label></td>
             </tr>
+            
             <tr>
                 <td>Pets</td>
                 <td>
-                    <asp:CheckBox OnCheckedChanged="chkPets_OnCheckedChanged" ID="chkPets" runat="server" />
-                    <asp:Label ID="Label1" runat="server" Text="Pets will be charged 10 pounds a night"></asp:Label></td>
+                   
+                    <asp:CheckBox Enabled="False" ID="chkPets" runat="server" />
+                    
+                        
+                </td>
             </tr>
             <tr>
                 <td>Price per Night</td>
@@ -53,6 +58,7 @@
                 <td>
                     <asp:Label ID="lblTotalPrice" runat="server" Text="Label"></asp:Label> </td>
             </tr>
+               
         </table>
        
     </div>

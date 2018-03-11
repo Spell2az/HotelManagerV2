@@ -91,7 +91,7 @@ public partial class Default2 : System.Web.UI.Page
         Session["dateTo"] = dateTo;
         Session["noOfPeople"] = noOfChildren+ noOfAdults;
         Session["noOfRooms"] = ddlRooms.SelectedValue;
-        
+        Session["pets"] = chkPets.Checked.ToString();
             
 
         // set session variables for date in, date out, number of rooms and how many people is the booking for

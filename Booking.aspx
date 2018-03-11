@@ -20,7 +20,10 @@
                     <asp:Literal runat="server">Rooms: </asp:Literal>
                     <asp:DropDownList ID="ddlRooms" runat="server"></asp:DropDownList>
                 </div>
-                
+                <div>
+                <asp:CheckBox ID="chkPets" runat="server" />
+                    <asp:Label ID="Label1" runat="server" Text="Pets will be charged 10 pounds a night"></asp:Label>
+                </div>
                 <asp:Button CssClass="btn btn-secondary" OnClick="searchBookingHandler" Text="Check Availability" runat="server"/>
             </div> 
     <div class="cal-wrapper">

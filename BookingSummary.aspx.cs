@@ -49,7 +49,15 @@ public partial class BookingSummary : System.Web.UI.Page
                                     _noOfDays, _totalToPay, _pets);
 
 
-        
+        var res= new RoomCollection(Arrival, Departure, noOfPeople);
+        var rrr =  res.GetAvailableRoomsList(Convert.ToInt32(roomTypeId), noOfRooms);
+        var roomid = "";
+        foreach (var rr in rrr)
+        {
+            roomid += rr + " ";
+        }
+        Response.Write(roomid);
+
     }
 
     private static DataRow GetRoomTypeData(string roomTypeId)

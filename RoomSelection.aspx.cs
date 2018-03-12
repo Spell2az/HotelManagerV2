@@ -32,11 +32,11 @@ public partial class RoomSelection : System.Web.UI.Page
     {
         int noOfPeople = Convert.ToInt32(Session["noOfPeople"]);
          
-        var dateFrom = Convert.ToString(Session["dateFrom"]);
+        var dateFrom = Convert.ToDateTime(Session["dateFrom"]);
         var dateTo = Convert.ToDateTime(Session["dateTo"]);
         var noOfRooms = Convert.ToInt32(Session["noOfRooms"]);
 
-        var noOfDays = 2;//(dateTo - dateFrom).TotalDays;
+        var noOfDays = (dateTo - dateFrom).TotalDays;
 
 
         lblArrivalDate.Text = dateFrom.ToString();

@@ -11,18 +11,18 @@ public class RoomCollection
 {
     private readonly DateTime _arrival;
     private readonly DateTime _departure;
-    private readonly int _noOfPeople;
+    private readonly int _noOfRooms;
 
-    public RoomCollection(DateTime arrival, DateTime departure, int noOfPeople)
+    public RoomCollection(DateTime arrival, DateTime departure, int noOfRooms)
     {
         _arrival = arrival;
         _departure = departure;
-        _noOfPeople = noOfPeople;
+        _noOfRooms = noOfRooms;
     }
 
     public DataView BuildRoomtypeView()
     {
-        var roomTypesList = FilterAvailableRooms(_noOfPeople).Keys.ToList();
+        var roomTypesList = FilterAvailableRooms(_noOfRooms).Keys.ToList();
         string query = MakeQuery(roomTypesList);
 
         DataTable roomTypes = GetAllRoomTypes();
@@ -94,4 +94,10 @@ public class RoomCollection
         return dc.DataTable;
         
     }
+
+    public List<string> GetAvailableRoomsList(int roomType)
+    {
+        return FilterAvailableRooms(_noOfRooms)[roomType.ToString()];
+    }
+
 }

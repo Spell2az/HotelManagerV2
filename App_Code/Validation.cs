@@ -102,7 +102,7 @@ public class Validation
             
 
         }
-        catch (Exception e)
+        catch 
         {
             Err = "* Email is not valid.";
             return false;
@@ -114,13 +114,24 @@ public class Validation
 
     public bool CheckDate(string date)
     {
-        DateTime dateValue;
-        if (DateTime.TryParse(date, out dateValue))
-        {
-            return true;
-        }
+        //DateTime dateValue;
+        //if (DateTime.TryParse(date, out dateValue))
+        //{
+        //    return true;
+        //}
 
-        Err = "* Enter valid date in format DD/MM/YYYY.";
-        return false;
+        
+
+        try
+        {
+            DateTime.ParseExact(date, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+        }
+        catch
+        {
+            Err = "* Enter valid date in format DD/MM/YYYY.";
+            return false;
+            
+        }
+        return true;
     }
 }

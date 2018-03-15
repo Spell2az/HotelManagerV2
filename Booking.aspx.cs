@@ -89,7 +89,7 @@ public partial class Default2 : System.Web.UI.Page
 
         Session["dateFrom"] = dateFrom;
         Session["dateTo"] = dateTo;
-        Session["noOfPeople"] = noOfChildren+ noOfAdults;
+        Session["noOfPeople"] = noOfChildren + noOfAdults;
         Session["noOfRooms"] = ddlRooms.SelectedValue;
         Session["pets"] = chkPets.Checked.ToString();
             

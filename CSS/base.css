@@ -113,17 +113,7 @@ body {
 .booking-summary > i {
     vertical-align: middle;
 }
-.black {
-    background: black;
-}
 
-.red {
-    background: red;
-}
-
-.green {
-    background: green;
-}
 
 
 .edit-wrapper {
@@ -141,6 +131,9 @@ body {
     font-weight: bold;
 }
 
+.search-wrapper {
+    margin: 20px 0;
+}
 .search-wrapper > input {
     display: inline-block;
 }
@@ -232,4 +225,9 @@ p.room-price {
     margin: 0 20px;
     padding: 5px 10px;
     cursor: pointer;
+}
+
+.reservations-table-wrapper {
+    margin: 20px auto;
+    padding: 0 20px;
 }

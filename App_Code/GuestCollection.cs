@@ -63,4 +63,11 @@ public class GuestCollection
             dc.Execute("sprocAddGuest");
         }
     }
+
+    public void Delete(int guestId)
+    {
+        var dc = new DataConnection();
+        dc.AddParameter("@guestId", guestId);
+        dc.Execute("sprocDeleteGuest");
+    }
 }

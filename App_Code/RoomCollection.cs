@@ -53,7 +53,7 @@ public class RoomCollection
     {
 
         //TODO how to handle max room capacity??
-        var allAvailableRooms = MakeRoomDictionary();
+        var allAvailableRooms = MakeAvailableRoomDictionary();
 
         var availableRoomTypes = allAvailableRooms.Keys
             .Where(roomType => allAvailableRooms[roomType].Count >= minRoomCount)
@@ -62,10 +62,10 @@ public class RoomCollection
         return availableRoomTypes;
     }
 
-    private Dictionary<string, List<string>> MakeRoomDictionary()
+    private Dictionary<string, List<string>> MakeAvailableRoomDictionary()
     {
         var availableRoomsWithTypes = new Dictionary<string, List<string>>();
-        var rooms = RetrieveAvailableRooms(_arrival, _departure);
+        var rooms = RetrieveAllAvailableRooms(_arrival, _departure);
 
         foreach (DataRow row in rooms.Rows)
         {
@@ -84,7 +84,7 @@ public class RoomCollection
         return availableRoomsWithTypes;
     }
 
-    private DataTable RetrieveAvailableRooms(DateTime arrivalDate, DateTime departureDate)
+    private DataTable RetrieveAllAvailableRooms(DateTime arrivalDate, DateTime departureDate)
     {
         var dc = new DataConnection();
         dc.AddParameter("@arrival", arrivalDate);
@@ -97,7 +97,9 @@ public class RoomCollection
 
     public List<string> GetAvailableRoomsList(int roomType)
     {
-        return FilterAvailableRooms(_noOfRooms)[roomType.ToString()];
+
+        var availableRooms = FilterAvailableRooms(_noOfRooms);
+        return availableRooms[roomType.ToString()];
     }
 
 }

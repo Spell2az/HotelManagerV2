@@ -9,23 +9,33 @@
         <div class="col-md-6 border">
             <div class="search-wrapper">
                 
-                <label for="txtSearchById" runat="server">Guest number</label>
+                <%--<label for="txtSearchById" runat="server">Guest number</label>--%>
                 <br />
-                <asp:TextBox CssClass="form-control textbox-size-50" ID="txtSearchById" runat="server"></asp:TextBox>
+                <asp:TextBox placeholder="Guest number" CssClass="form-control textbox-size-50" ID="txtSearchById" runat="server"></asp:TextBox>
+                <br />
+                <br />
                 <asp:Button CssClass="btn btn-secondary" OnClick="SearchByNumber" runat="server" Text="Search by Guest Number" />
+                
             </div>
             <div class="search-wrapper">
-                <label for="txtSearchByName">Guest name</label>
+                <%--<label for="txtSearchByName">Guest name</label>--%>
                 <br />
-                <asp:TextBox CssClass="form-control textbox-size-50" ID="txtSearchByName" runat="server"></asp:TextBox>
+                <asp:TextBox placeholder="Guest name" CssClass="form-control textbox-size-50" ID="txtSearchByName" runat="server"></asp:TextBox>
+                <br />
+                <br />
                 <asp:Button CssClass="btn btn-secondary" OnClick="SearchByLastName" runat="server" Text="Search by last name" />
             </div>
             <br />
+            <asp:Button CssClass="btn btn-secondary" OnClick="ListboxDisplayAll" runat="server" Text="Display All" />
             <div>
             
                
                 <asp:ListBox CssClass="guest-listbox" OnSelectedIndexChanged="lstGuest_OnSelectedIndexChanged" ID="lstGuest" runat="server"></asp:ListBox>
-                    <asp:Button CssClass="btn btn-secondary" OnClick="ListboxDisplayAll" runat="server" Text="Display All" />
+                <br />
+                <asp:Button CssClass="btn btn-secondary" OnClick="AddNewGuest" runat="server" Text="Add New Guest" />
+                <asp:Button ID="btnEdit" CssClass="btn btn-secondary" OnClick="EditGuestDetails" runat="server" Text="Edit" />
+                
+                <asp:Button ID="btnDelete" CssClass="btn btn-secondary" OnClick="HandlerDeleteGuest" runat="server" Text="Delete Guest Account" />
             </div>
         </div>
         <div class="col-md-6 border">
@@ -56,14 +66,16 @@
                 <p id="">Registered on:
                     <asp:Label ID="lblGuestRegistration" CssClass="my-label" runat="server" Text=""></asp:Label></p>
 
-                <asp:Button CssClass="btn btn-secondary" OnClick="AddNewGuest" runat="server" Text="Add New Guest" />
-                <asp:Button CssClass="btn btn-secondary" runat="server" Text="View Reservations" />
-                <asp:Label ID="Label2" runat="server" Text=""></asp:Label>
-                <asp:Button ID="myBtn" CssClass="btn btn-secondary" OnClick="EditGuestDetails" runat="server" Text="Edit" />
-
+                <asp:Button ID="btnAddReservation" runat="server" Text="Add Reservation" OnClick="handlerAddReservation" CssClass="btn btn-secondary"/>
+                <asp:Button ID="btnViewReservations" OnClick="handlerViewReservations" CssClass="btn btn-secondary"  runat="server" Text="View Reservations" />
+                
+               
             </asp:Panel>
         </div>
-        <%--<asp:Chart ID="Chart1" runat="server">
+       
+        
+        
+         <%--<asp:Chart ID="Chart1" runat="server">
                 <Series>
                     <asp:Series Name="Series1"></asp:Series>
                 </Series>

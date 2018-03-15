@@ -70,7 +70,7 @@ public partial class GuestEdit : System.Web.UI.Page
         guest.GuestId = _guestId;
         guest.FirstName = txtFirstName.Text;
         guest.LastName = txtLastName.Text;
-        guest.DateOfBirth = Convert.ToDateTime(txtDOB.Text);
+        guest.DateOfBirth = DateTime.ParseExact(txtDOB.Text, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
         guest.Phone = txtPhone.Text;
         guest.Email = txtEmail.Text;
         guest.HouseNo = txtHouseNo.Text;
@@ -91,7 +91,7 @@ public partial class GuestEdit : System.Web.UI.Page
     {
         txtFirstName.Text =guest.FirstName;
         txtLastName.Text =guest.LastName;
-        txtDOB.Text =guest.DateOfBirth.ToString("dd/M/yyyy");
+        txtDOB.Text =guest.DateOfBirth.ToString("dd/MM/yyyy");
         txtPhone.Text =guest.Phone;
         txtEmail.Text =guest.Email;
         txtHouseNo.Text =guest.HouseNo;
@@ -99,7 +99,7 @@ public partial class GuestEdit : System.Web.UI.Page
         txtTown.Text =guest.Town;
         txtPostcode.Text =guest.Postcode;
         ddlCountry.SelectedValue =guest.Country.ToString();
-        txtRegistered.Text =guest.RegisteredSince.ToString("dd/M/yyyy");
+        txtRegistered.Text =guest.RegisteredSince.ToString("dd/MM/yyyy");
     }
 
 

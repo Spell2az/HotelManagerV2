@@ -8,57 +8,42 @@ using System.Web.UI.WebControls;
 
 public partial class BookingSummary : System.Web.UI.Page
 {
-    //private DateTime _arrival;
-    //private DateTime _departure;
+    
     private int _guestId;
     private bool _pets;
     private decimal _totalToPay;
     private int _reservationId;
-
+    private DateTime _arrival;
+    private DateTime _departure;
     private int _noOfDays;
+    private int _noOfRooms;
+    private int _roomType;
 
-    public DateTime Arrival { get; set; }
-    public DateTime Departure { get; set; }
+   
     protected void Page_Load(object sender, EventArgs e)
     {
-      
-           
+
+
         int noOfPeople = ((int)Session["noOfPeople"]);
+        SetPrivateVariableForPage();
 
-        _pets = Convert.ToBoolean(Session["pets"]);
-        _guestId = Convert.ToInt32(Session["guestId"]);
-        Arrival = Convert.ToDateTime(Session["dateFrom"].ToString());
-        Departure = Convert.ToDateTime(Session["dateTo"]);
-        _reservationId = new Reservation().GetNextAvailableReservationId();
-
-
-        var noOfRooms = Convert.ToInt32(Session["noOfRooms"]);
-        var roomTypeId = Request.QueryString["roomType"];
-
-        DataRow roomType = GetRoomTypeData(roomTypeId);
+        DataRow roomType = GetRoomTypeData(_roomType.ToString());
         var roomDescription = roomType["room_name"].ToString();
         var roomPricePerNight = Convert.ToDouble(roomType["room_base_price"]);
         var roomMaxNoOfGuest = Convert.ToInt32(roomType["room_max_capacity"]);
 
-        _noOfDays = (int) (Departure - Arrival).TotalDays;
+
 
         var petCharge = _pets ? 10 : 0;
-        _totalToPay = (decimal) (roomPricePerNight * noOfRooms * _noOfDays + _noOfDays * petCharge);
-        AssignBookingDataToLabels(noOfPeople, Arrival, Departure, 
-                                    noOfRooms, roomDescription, roomPricePerNight, 
+        _totalToPay = (decimal)(roomPricePerNight * _noOfDays + _noOfDays * petCharge);
+        AssignBookingDataToLabels(noOfPeople, _arrival, _departure,
+            _noOfRooms, roomDescription, roomPricePerNight,
                                     _noOfDays, _totalToPay, _pets);
 
 
-        var res= new RoomCollection(Arrival, Departure, noOfPeople);
-        var rrr =  res.GetAvailableRoomsList(Convert.ToInt32(roomTypeId), noOfRooms);
-        var roomid = "";
-        foreach (var rr in rrr)
-        {
-            roomid += rr + " ";
-        }
-        Response.Write(roomid);
-
     }
+
+    
 
     private static DataRow GetRoomTypeData(string roomTypeId)
     {
@@ -97,39 +82,33 @@ public partial class BookingSummary : System.Web.UI.Page
     protected void btnConfirm_OnClick(object sender, EventArgs e)
     {
         //get the data
-        
-        AddReservation(_reservationId, Arrival, Departure, _guestId, _pets, _totalToPay);
-        
 
 
-        // call AddReservation
-        // call AddReserveRooms
+        var reservations = new ReservationCollection(_guestId);
+        var thisReservation = reservations.Reservation;
+        thisReservation.ReservationId = _reservationId;
+        thisReservation.Arrival = _arrival;
+        thisReservation.Departure = _departure;
+        thisReservation.Pets = _pets;
+        thisReservation.AmountToPay = _totalToPay;
+        thisReservation.NoOfRooms = _noOfRooms;
+        thisReservation.RoomType = _roomType;
+        reservations.AddReservation();
+
+        reservations.AddRoomsToReservation();
+
+        Response.Redirect("Default.aspx");
     }
 
-    private void AddReservation(int reservationId, 
-                                DateTime arrival, 
-                                DateTime departure, 
-                                int guestId, 
-                                bool pets, 
-                                decimal totalPrice)
+    private void SetPrivateVariableForPage()
     {
-      var dc = new DataConnection();
-      dc.AddParameter("@reservation_id", reservationId);
-      dc.AddParameter("@date_in", arrival);
-      dc.AddParameter("@date_out", departure);
-      dc.AddParameter("@guest_id", guestId);
-      dc.AddParameter("@pets", pets);
-      dc.AddParameter("@amount_to_pay", totalPrice);
-
-        dc.Execute("addReservation");
-    }
-
-    private void AddReserveRooms(int reservationId,int roomType, int noOfRooms)
-    {
-        //get list of rooms
-
-        //loop throught list of rooms 
-            
-            //complete ReserveRoom sproc for all rooms
+        _pets = Convert.ToBoolean(Session["pets"]);
+        _guestId = Convert.ToInt32(Session["guestId"]);
+        _arrival = Convert.ToDateTime(Session["dateFrom"].ToString());
+        _departure = Convert.ToDateTime(Session["dateTo"]);
+        _reservationId = new Reservation().GetNextAvailableReservationId();
+        _noOfRooms = Convert.ToInt32(Session["noOfRooms"]);
+        _roomType = Convert.ToInt32(Request.QueryString["roomType"]);
+        _noOfDays = (int)(_departure - _arrival).TotalDays;
     }
 }

@@ -19,7 +19,8 @@ public class Reservation
     public int GuestId { get; set; }
     public bool Pets { get; set; }
     public decimal AmountToPay { get; set; }
-
+    public int NoOfRooms { get; set; }
+    public int RoomType { get; set; }
     public List<int> ReservationRoomList { get; set; }
     
     public Reservation()
@@ -92,4 +93,6 @@ public class Reservation
 
         ReservationRoomList = dc.DataTable.AsEnumerable().Select(row => Convert.ToInt32(row["room_id"])).ToList();
     }
+
+    
 }

@@ -8,7 +8,6 @@ using System.Web.UI.WebControls;
 
 public partial class Default2 : System.Web.UI.Page
 {
-    private int GuestId;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -17,18 +16,13 @@ public partial class Default2 : System.Web.UI.Page
             FillGuestListBox("");
             lstGuest.AutoPostBack = true;
 
-            var sessionKeys = "";
-            foreach (string key in Session.Keys)
-            {
-                //Reset Session variables
-                //Session[key] = "";
-                //to access session from Business layer =>  HttpContext.Current.Session
+            btnDelete.Enabled = false;
+            btnEdit.Enabled = false;
+            btnViewReservations.Enabled = false;
+            btnAddReservation.Enabled = false;
 
-                sessionKeys += key;
-            }
-
-            Response.Write(sessionKeys);
-            // lblTest.Text = Convert.ToString(lstAddresses.SelectedIndex);
+            var en = Session.Keys.Cast<string>();
+            en.Select(key => Session[key] = "");
         }
     }
 
@@ -69,8 +63,11 @@ public partial class Default2 : System.Web.UI.Page
 
     protected void lstGuest_OnSelectedIndexChanged(object sender, EventArgs e)
     {
+        btnDelete.Enabled = true;
+        btnEdit.Enabled = true;
+        btnViewReservations.Enabled = true;
+        btnAddReservation.Enabled = true;
 
-     
         var guestCollection = new GuestCollection();
         var guest = guestCollection.ThisGuest;
         guest.Find(Convert.ToInt32(lstGuest.SelectedValue));
@@ -137,4 +134,43 @@ public partial class Default2 : System.Web.UI.Page
     {
         FillGuestListBox("");
     }
+
+    protected void handlerAddReservation(object sender, EventArgs e)
+    {
+        Response.Redirect("Booking.aspx");
+    }
+
+    protected void handlerViewReservations(object sender, EventArgs e)
+    {
+        Response.Redirect("Reservations.aspx");
+    }
+
+    protected void HandlerDeleteGuest(object sender, EventArgs e)
+    {
+        var guests = new GuestCollection();
+        var guestId = Convert.ToInt32(Session["guestId"]);
+        guests.Delete(guestId);
+        FillGuestListBox("");
+        ResetGuestDetails();
+        Session["guestId"] = "";
+
+    }
+
+    private void ResetGuestDetails()
+    {
+
+        lblGuestID.Text = "";
+        lblGuestFirstName.Text = "";
+        lblGuestLastName.Text = "";
+        lblGuestDOB.Text = "";
+        lblGuestPhone.Text = "";
+        lblGuestEmail.Text = "";
+        lblGuestHouseNo.Text = "";
+        lblGuestStreet.Text = "";
+        lblGuestTown.Text = "";
+        lblGuestPostCode.Text = "";
+        lblGuestCountry.Text = "";
+        lblGuestRegistration.Text = "";
+    }
+
 }

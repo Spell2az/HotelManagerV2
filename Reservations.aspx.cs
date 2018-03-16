@@ -15,6 +15,13 @@ public partial class Reservations : System.Web.UI.Page
         Repeater1.DataSource = reservations.ReservationsTable;
         Repeater1.DataBind();
 
+        var guest = new Guest();
+        if (guest.Find(_guestId))
+        {
+            lblAccountNumber.Text = _guestId.ToString();
+            lblGuestName.Text = $"{guest.FirstName} {guest.LastName}";
+        }
+
     }
 
     protected void btnAddReservation_OnClick(object sender, EventArgs e)

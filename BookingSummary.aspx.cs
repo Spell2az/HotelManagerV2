@@ -35,7 +35,7 @@ public partial class BookingSummary : System.Web.UI.Page
 
 
         var petCharge = _pets ? 10 : 0;
-        _totalToPay = (decimal)(roomPricePerNight * _noOfDays + _noOfDays * petCharge);
+        _totalToPay = (decimal)(roomPricePerNight * _noOfRooms + _noOfDays * petCharge);
         AssignBookingDataToLabels(noOfPeople, _arrival, _departure,
             _noOfRooms, roomDescription, roomPricePerNight,
                                     _noOfDays, _totalToPay, _pets);

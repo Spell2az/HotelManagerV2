@@ -231,3 +231,11 @@ p.room-price {
     margin: 20px auto;
     padding: 0 20px;
 }
+
+.column-chart {
+    margin: 20px;
+}
+
+.dougnut-chart-row {
+    padding: 20px;
+}

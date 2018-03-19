@@ -15,7 +15,7 @@
 body {
     box-sizing: border-box;
     height: 100vh;
-   
+    color: rgb(45, 44, 44);
   
 }
 
@@ -23,6 +23,7 @@ body {
     background-image: linear-gradient( #f8f8f8,rgb(254, 254, 254));
     bottom: 0;
     height: 100%;
+    
 }
 
 .navbar {
@@ -36,7 +37,7 @@ body {
 }
 
 .border {
-    border: solid 3px salmon;
+   
     
 }
 
@@ -102,19 +103,32 @@ body {
 .booking-summary {
     justify-content: flex-start;
     align-content: center;
+    background: #007BFF;
+    color: #f8f8f8;
 }
 
 .booking-summary > *{
     display: block;
     padding: 10px;
-    
+    color: #f8f8f8;
+}
+
+.booking-summary > span {
+    color: #f8f8f8 !important;
 }
 
 .booking-summary > i {
     vertical-align: middle;
 }
 
-
+.booking-summary-panel {
+    background: white;
+    width: 800px;
+    padding: 30px;
+    border: solid 1px #ccc;
+    border-radius: 4px;
+    margin: 0 auto;
+}
 
 .edit-wrapper {
     height: 100%;
@@ -127,7 +141,7 @@ body {
     padding-left: 1rem;
     font-size: .8rem !important;
     width: 100% !important;
-    color: #ff3535;
+    color: #ff3535 !important;
     font-weight: bold;
 }
 
@@ -189,7 +203,7 @@ body {
     justify-content: center;
     align-items: center;
     font-size: 30px;
-    background: #b1f3ad;
+    background: #adcaf3;
 }
 
 p.room-price {
@@ -230,4 +244,16 @@ p.room-price {
 .reservations-table-wrapper {
     margin: 20px auto;
     padding: 0 20px;
+}
+
+.column-chart {
+    margin: 20px;
+}
+
+.dougnut-chart-row {
+    padding: 20px;
+}
+
+.btn-side-margin {
+    margin: 0 30px;
 }

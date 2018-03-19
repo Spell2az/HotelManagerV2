@@ -4,6 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+    <div class="booking-summary-panel">
     <div class="summary-heading">
         <h2>Booking Summary</h2>
     </div>
@@ -63,8 +64,9 @@
        
     </div>
     <div class="row summary-buttons-wrapper">
-        <asp:Button ID="btnCancel" OnClick="btnCancel_OnClick" runat="server" Text="Cancel" />
-        <asp:Button ID="btnConfirm" OnClick="btnConfirm_OnClick" runat="server" Text="Confirm Booking" />
+        <asp:Button ID="btnCancel" OnClick="btnCancel_OnClick" runat="server" Text="Cancel" CssClass="btn btn-primary" />
+        <asp:Button ID="btnConfirm" OnClick="btnConfirm_OnClick" runat="server" Text="Confirm Booking" CssClass="btn btn-primary" />
+    </div>
     </div>
 </asp:Content>
 

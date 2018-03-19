@@ -72,10 +72,13 @@
             <asp:TextBox disabled ID="txtRegistered" CssClass="form-control" runat="server"></asp:TextBox>
             <asp:Label ID="Label1" runat="server" CssClass="err-label"></asp:Label>
         </div>
-
-        <asp:Button ID="EditCancel" OnClick="EditCancel_OnClick" runat="server" Text="Cancel" />
-        <asp:Button ID="EditUpdate" OnClick="EditUpdate_OnClick" runat="server" Text="Update" />
     </div>
-    <div></div>
+       
+    
+    <div class="row justify-content-center">
+        <asp:Button ID="EditUpdate" CssClass="btn btn-primary btn-side-margin" OnClick="EditUpdate_OnClick" runat="server" Text="Update" />
+        <asp:Button ID="EditCancel" CssClass="btn btn-primary btn-side-margin" OnClick="EditCancel_OnClick" runat="server" Text="Cancel" />
+        
+    </div>
 </asp:Content>
 

@@ -20,6 +20,18 @@ public class Validation
         //
     }
 
+    public void ValidateNumber(int min, int max, string value)
+    {
+        int val = 0;
+        if (!int.TryParse( value, out val))
+        {
+            Err = "Enter valid number";
+        }
+        //if (b)
+        //{
+            
+        //}
+    }
     public Validation(int min, int max, string value, string type)
     {
 

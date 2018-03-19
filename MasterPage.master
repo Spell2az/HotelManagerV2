@@ -19,7 +19,7 @@
        <%-- <header class="header ">
             <h2 class="header__headline">Hotel Manager</h2>
         </header>--%>
-            <nav class="navbar navbar-expand-lg navbar-dark bg-secondary d-flex">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary d-flex">
                 <a class="navbar-brand" href="#">Hotel Management</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -30,17 +30,14 @@
                         <li class="nav-item mr-auto p-2">
                             <a class="nav-link" href="Guest.aspx">Guests</a>
                         </li>
-                         
-                        <li class="nav-item dropdown p-2">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Reports
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="#">Revenue generation index</a>
-                                <a class="dropdown-item" href="#">Average rate index</a>
-                                <a class="dropdown-item" href="#">Market penetration index</a>
-                            </div>
+                        <li class="nav-item mr-auto p-2">
+                            <a class="nav-link" href="Reports.aspx">Current status</a>
                         </li>
+                        <li class="nav-item mr-auto p-2">
+                            <a class="nav-link" href="DataExport.aspx">Export Data</a>
+                        </li>
+                            
+                        
                     </ul>
                 </div>
             </nav>

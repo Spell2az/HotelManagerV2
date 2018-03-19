@@ -1,5 +1,10 @@
 ﻿body {
-    /*font-family: "Ubuntu", sans-serif;
-    font-weight: 400;*/
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 400;
     
+    
+}
+
+h1,h2,h3,p, span {
+    color: rgb(45, 44, 44) !important;
 }

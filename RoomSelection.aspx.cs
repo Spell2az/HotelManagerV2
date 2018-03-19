@@ -39,7 +39,7 @@ public partial class RoomSelection : System.Web.UI.Page
         var noOfDays = (dateTo - dateFrom).TotalDays;
 
 
-        lblArrivalDate.Text = dateFrom.ToString();
+        lblArrivalDate.Text = dateFrom.ToString("D");
         lblDepartureDate.Text = dateTo.ToString("D");
 
         lblGuestCount.Text = noOfPeople.ToString();

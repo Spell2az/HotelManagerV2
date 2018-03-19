@@ -23,15 +23,15 @@ public partial class Default2 : System.Web.UI.Page
 
             FillDropDownWithRange(ddlAdults, 1, 10);
             FillDropDownWithRange(ddlChildren, 0, 10);
-            FillDropDownWithRange(ddlRooms, 1, 10);
+           
 
             calArrival.SelectedDate = defaultDate;
             calArrival.VisibleDate = defaultDate;
-            litArrival.Text = defaultDate.ToString("D");
+            lblArrivalDate.Text = defaultDate.ToString("D");
 
             calCheckOut.SelectedDate = defaultDate.AddDays(1);
             calCheckOut.VisibleDate = defaultDate.AddDays(1);
-            litCheckOut.Text = defaultDate.AddDays(1).ToString("D");
+            lblCheckOutDate.Text = defaultDate.AddDays(1).ToString("D");
 
         }
     }
@@ -49,13 +49,13 @@ public partial class Default2 : System.Web.UI.Page
     {
         
 
-        litCheckOut.Text = calCheckOut.SelectedDate.ToString("D");
+        lblCheckOutDate.Text = calCheckOut.SelectedDate.ToString("D");
        
     }
 
     protected void CalArrival_OnSelectionChanged(object sender, EventArgs e)
     {
-        litArrival.Text = calArrival.SelectedDate.ToString("D");
+        lblArrivalDate.Text = calArrival.SelectedDate.ToString("D");
     }
 
     protected void calCheckOut_OnDayRender(object sender, DayRenderEventArgs e)
@@ -63,7 +63,7 @@ public partial class Default2 : System.Web.UI.Page
         if (e.Day.Date.CompareTo(DateTime.Today.AddDays(1)) < 0)
         {
             e.Day.IsSelectable = false;
-            e.Cell.BackColor = Color.Coral;
+            e.Cell.BackColor = Color.DimGray;
         }
     }
 
@@ -72,7 +72,7 @@ public partial class Default2 : System.Web.UI.Page
         if (e.Day.Date.CompareTo(DateTime.Today) < 0)
         {
             e.Day.IsSelectable = false;
-            e.Cell.BackColor = Color.Coral;
+            e.Cell.BackColor = Color.DimGray;
         }
     }
 
@@ -83,18 +83,31 @@ public partial class Default2 : System.Web.UI.Page
         var dateTo = calCheckOut.SelectedDate.ToString("D");
         //var stuff = $"{ ddlAdults.SelectedValue},{ddlChildren.SelectedValue},{ddlRooms.SelectedValue}," +
                    // $"{arr},{dep}";
-
-        var noOfAdults = Convert.ToInt32(ddlAdults.SelectedValue);
-        var noOfChildren = Convert.ToInt32(ddlChildren.SelectedValue);
-
-        Session["dateFrom"] = dateFrom;
-        Session["dateTo"] = dateTo;
-        Session["noOfPeople"] = noOfChildren + noOfAdults;
-        Session["noOfRooms"] = ddlRooms.SelectedValue;
-        Session["pets"] = chkPets.Checked.ToString();
+        if (calArrival.SelectedDate >= calCheckOut.SelectedDate)
+        {
             
+            ScriptManager.RegisterStartupScript(
+                this,
+                typeof(Page),
+                "Alert",
+                "<script>alert('Check out date must be after Arrival date');</script>",
+                false);
+        }
+        else
+        {
+            var noOfAdults = Convert.ToInt32(ddlAdults.SelectedValue);
+            var noOfChildren = Convert.ToInt32(ddlChildren.SelectedValue);
 
-        // set session variables for date in, date out, number of rooms and how many people is the booking for
-       Response.Redirect("RoomSelection.aspx");
+            Session["dateFrom"] = dateFrom;
+            Session["dateTo"] = dateTo;
+            Session["noOfPeople"] = noOfChildren + noOfAdults;
+            Session["noOfRooms"] = txtNoOfRooms.Text;
+            Session["pets"] = chkPets.Checked.ToString();
+
+
+            // set session variables for date in, date out, number of rooms and how many people is the booking for
+            Response.Redirect("RoomSelection.aspx");
+        }
+        
     }
 }

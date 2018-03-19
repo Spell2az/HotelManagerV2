@@ -100,10 +100,10 @@ public class Guest
         var validateEmail = new Validation(6, 50, email, "email");
         var validatePhone = new Validation(6, 25, phone, "number");
         var validateHouseNo = new Validation(1, 6, houseNo, "postcode");
-        var validateStreet = new Validation(3, 50, street, "name");
-        var validateTown = new Validation(3, 50, town, "name");
-        var validatePostCode = new Validation(3, 12, postcode, "postcode");
-        var validateDob = new Validation(10, 11, dob, "date");
+        var validateStreet = new Validation(2, 50, street, "name");
+        var validateTown = new Validation(2, 50, town, "name");
+        var validatePostCode = new Validation(6, 12, postcode, "postcode");
+        var validateDob = new Validation(10, 10, dob, "date");
 
 
         errors["firstName"] = validateFirstName.Err;

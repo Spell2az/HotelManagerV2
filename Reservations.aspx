@@ -3,7 +3,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <div class="row">
+    <div class="row justify-content-center">
+        <h2 style="padding: 30px">Reservations</h2>
+    </div>
+    
+    <div class="row justify-content-center">
         <div>
         <asp:Label runat="server" Text="Guest name: "></asp:Label>
         <asp:Label runat="server" ID="lblGuestName"></asp:Label>
@@ -13,7 +17,7 @@
         <asp:Label runat="server" ID="lblAccountNumber" ></asp:Label>
         <br />
         <br />
-            <asp:Button CssClass="btn btn-secondary" ID="btnAddReservation" OnClick="btnAddReservation_OnClick" runat="server" Text="Add Reservation"/>
+            <asp:Button CssClass="btn btn-primary" ID="btnAddReservation" OnClick="btnAddReservation_OnClick" runat="server" Text="Add Reservation"/>
         </div>
     </div>
         <div class="row">
@@ -22,16 +26,31 @@
        
         <table class="table">
         <asp:repeater ID="Repeater1" runat="server">
+            <HeaderTemplate>
+                <tr>
+                    <th>ID</th>
+               
+                    <th>Check-in</th>
+               
+                    <th>Check-out</th>
+               
+                    <th>Pets</th>
+               
+                    <th>Amount</th>
+               
+                    <th></th>
+                </tr>
+            </HeaderTemplate>
             <ItemTemplate>
                 <tr>
                     <td>
                         <asp:Label runat="server" Text='<%# Eval("reservation_id") %>'></asp:Label>
                     </td>
                     <td>
-                        <asp:Label runat="server" Text='<%# Eval("date_in") %>'></asp:Label>
+                        <asp:Label runat="server" Text='<%# Convert.ToDateTime(Eval("date_in")).ToString("D") %>'></asp:Label>
                     </td>
                     <td>
-                        <asp:Label runat="server" Text='<%# Eval("date_out") %>'></asp:Label>
+                        <asp:Label runat="server" Text='<%# Convert.ToDateTime(Eval("date_out")).ToString("D") %>'></asp:Label>
                     </td>
                     <td>
                         <asp:Label runat="server" Text="Pets"></asp:Label>

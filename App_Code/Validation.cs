@@ -25,12 +25,12 @@ public class Validation
         int val = 0;
         if (!int.TryParse( value, out val))
         {
-            Err = "Enter valid number";
+            Err = "* Enter valid number";
         }
-        //if (b)
-        //{
-            
-        //}
+        else if (val > max || val < min)
+        {
+            Err = $"* Please enter number less than {max+1} or bigger than {min-1}";
+        }
     }
     public Validation(int min, int max, string value, string type)
     {

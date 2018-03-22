@@ -3,30 +3,16 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <div class="d-flex justify-content-around ">
-        <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="..." alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Graph Link</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="GuestDetails.aspx" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
-        <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="..." alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
-        <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="..." alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <asp:Button ID="Button1" class="btn btn-primary" runat="server" Text="Go somewhere" />
-            </div>
+    <div class="row justify-content-center">
+        <div class="jumbotron text-center">
+            <h1 class="display-4">Hotel Management Application</h1>
+            <hr class="my-4">
+            <p class="lead">Welcome, this application provides easy to use functionality to manage guests and reservation for your Hotel.</p>
+            
+            <p></p>
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="Guest.aspx" role="button">Get Started!</a>
+            </p>
         </div>
     </div>
 </asp:Content>

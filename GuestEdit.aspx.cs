@@ -68,15 +68,15 @@ public partial class GuestEdit : System.Web.UI.Page
         
 
         guest.GuestId = _guestId;
-        guest.FirstName = txtFirstName.Text;
-        guest.LastName = txtLastName.Text;
-        guest.DateOfBirth = DateTime.ParseExact(txtDOB.Text, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-        guest.Phone = txtPhone.Text;
-        guest.Email = txtEmail.Text;
-        guest.HouseNo = txtHouseNo.Text;
-        guest.Street = txtStreet.Text;
-        guest.Town = txtTown.Text;
-        guest.Postcode = txtPostcode.Text;
+        guest.FirstName = txtFirstName.Text.Trim();
+        guest.LastName = txtLastName.Text.Trim();
+        guest.DateOfBirth = DateTime.ParseExact(txtDOB.Text.Trim(), "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+        guest.Phone = txtPhone.Text.Trim();
+        guest.Email = txtEmail.Text.Trim();
+        guest.HouseNo = txtHouseNo.Text.Trim();
+        guest.Street = txtStreet.Text.Trim();
+        guest.Town = txtTown.Text.Trim();
+        guest.Postcode = txtPostcode.Text.Trim();
         guest.Country = Convert.ToInt32(ddlCountry.SelectedValue);
         guest.RegisteredSince = DateTime.Today;
 
@@ -107,15 +107,15 @@ public partial class GuestEdit : System.Web.UI.Page
     {
 
         var guest = new Guest();
-        var guestErr = guest.checkErrors(txtFirstName.Text,
-                                        txtLastName.Text,
-                                        txtEmail.Text, 
-                                        txtPhone.Text, 
-                                        txtHouseNo.Text, 
-                                        txtStreet.Text,
-                                        txtTown.Text, 
-                                        txtPostcode.Text, 
-                                        txtDOB.Text);
+        var guestErr = guest.checkErrors(txtFirstName.Text.Trim(),
+                                        txtLastName.Text.Trim(),
+                                        txtEmail.Text.Trim(), 
+                                        txtPhone.Text.Trim(), 
+                                        txtHouseNo.Text.Trim(), 
+                                        txtStreet.Text.Trim(),
+                                        txtTown.Text.Trim(), 
+                                        txtPostcode.Text.Trim(), 
+                                        txtDOB.Text.Trim());
 
         errFirstName.Text = guestErr["firstName"];
         errLastName.Text = guestErr["lastName"];

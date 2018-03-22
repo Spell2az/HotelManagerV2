@@ -31,7 +31,7 @@ public partial class Reservations : System.Web.UI.Page
 
     protected void handlerCancelReservation(object sender, EventArgs e)
     {
-        var lb = sender as LinkButton;
+        var lb = sender as Button;
         var reservationId = Convert.ToInt32(lb.CommandArgument);
         var reservations = new ReservationCollection(_guestId);
         reservations.Delete(reservationId);

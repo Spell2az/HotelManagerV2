@@ -13,6 +13,10 @@ public class RoomCollection
     private readonly DateTime _departure;
     private readonly int _noOfRooms;
 
+    public RoomCollection()
+    {
+        
+    }
     public RoomCollection(DateTime arrival, DateTime departure, int noOfRooms)
     {
         _arrival = arrival;
@@ -33,11 +37,19 @@ public class RoomCollection
     private string MakeQuery(List<string> roomTypesList)
     {
         var query = "room_type_id in (";
-        foreach (var type in roomTypesList)
+        if (roomTypesList.Count == 0)
         {
-            query += $"'{type}',";
+            query += "-9999";
+        }
+        else
+        {
+            foreach (var type in roomTypesList)
+            {
+                query += $"'{type}',";
+            }
         }
         query += ")";
+
         return query;
     }
 
@@ -89,7 +101,7 @@ public class RoomCollection
         var dc = new DataConnection();
         dc.AddParameter("@arrival", arrivalDate);
         dc.AddParameter("@departure", departureDate);
-        dc.Execute("getAvailableRoomTypes");
+        dc.Execute("sprocGetAvailableRoomTypes");
 
         return dc.DataTable;
         
@@ -100,6 +112,14 @@ public class RoomCollection
 
         var availableRooms = FilterAvailableRooms(_noOfRooms);
         return availableRooms[roomType.ToString()];
+    }
+
+    public DataRow GetRoomTypeData(string roomTypeId)
+    {
+        var dc = new DataConnection();
+        dc.AddParameter("@room_type_id", roomTypeId);
+        dc.Execute("sprocGetRoomTypeById");
+        return dc.DataTable.Rows[0];
     }
 
 }

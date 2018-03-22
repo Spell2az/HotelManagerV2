@@ -21,7 +21,7 @@
                 </div>
                 <div>
                     <asp:Literal runat="server">Rooms: </asp:Literal>
-                    <asp:TextBox style="width: 30px" ID="txtNoOfRooms" runat="server"></asp:TextBox>
+                    <asp:TextBox style="width: 30px" ID="txtNoOfRooms" runat="server" ></asp:TextBox> <asp:Label runat="server" ID="lblNoOfRoomsValidation" ></asp:Label>
                 </div>
                
             </div> 

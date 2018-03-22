@@ -47,10 +47,8 @@ public partial class BookingSummary : System.Web.UI.Page
 
     private static DataRow GetRoomTypeData(string roomTypeId)
     {
-        var dc = new DataConnection();
-        dc.AddParameter("@room_type_id", roomTypeId);
-        dc.Execute("sprocGetRoomTypeById");
-        return dc.DataTable.Rows[0];
+        var roomCollection = new RoomCollection();
+        return roomCollection.GetRoomTypeData(roomTypeId);
     }
 
     private void AssignBookingDataToLabels(int noOfPeople, DateTime dateFrom, DateTime dateTo, 

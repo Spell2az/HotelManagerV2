@@ -45,11 +45,26 @@ public class ReportData
         var chartData = new Dictionary<string, int>();
         dc.Execute("sprocTotalAndActualSpaces");
 
+        //    object value = row["ColumnName"];
+        //    if (value == DBNull.Value)
+        //        // do something
+        //        else
+        //    // do something else
+        //}
+
         foreach (DataRow row in dc.DataTable.Rows)
         {
             foreach (DataColumn column in dc.DataTable.Columns)
             {
-                chartData[column.ColumnName] = Convert.ToInt32(row[column]);
+                object value = row[column];
+                if (value == DBNull.Value)
+                {
+                    chartData[column.ColumnName] = 0;
+                }
+                else
+                {
+                    chartData[column.ColumnName] = Convert.ToInt32(row[column]);
+                }
             }
         }
 

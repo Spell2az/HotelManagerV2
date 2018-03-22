@@ -11,20 +11,21 @@ using System.Web.UI.WebControls;
    // The number of persons traveling for your stay exceeds the capacity of the room type selected.Please select a different room type or increase the number of rooms.
 public partial class Default2 : System.Web.UI.Page
 {
+    private Validation _numberValidation = new Validation();
     protected void Page_Load(object sender, EventArgs e)
     {
         
        
 
         var defaultDate = DateTime.Today;
-
+        lblNoOfRoomsValidation.ForeColor = Color.Red;
         if (!Page.IsPostBack)
         {
 
             FillDropDownWithRange(ddlAdults, 1, 10);
             FillDropDownWithRange(ddlChildren, 0, 10);
-           
 
+            txtNoOfRooms.Text = "1";
             calArrival.SelectedDate = defaultDate;
             calArrival.VisibleDate = defaultDate;
             lblArrivalDate.Text = defaultDate.ToString("D");
@@ -81,8 +82,9 @@ public partial class Default2 : System.Web.UI.Page
 
         var dateFrom = calArrival.SelectedDate.ToString("D");
         var dateTo = calCheckOut.SelectedDate.ToString("D");
-        //var stuff = $"{ ddlAdults.SelectedValue},{ddlChildren.SelectedValue},{ddlRooms.SelectedValue}," +
-                   // $"{arr},{dep}";
+        
+        _numberValidation.ValidateNumber(1, 9, txtNoOfRooms.Text);
+        lblNoOfRoomsValidation.Text = _numberValidation.Err;
         if (calArrival.SelectedDate >= calCheckOut.SelectedDate)
         {
             
@@ -93,7 +95,7 @@ public partial class Default2 : System.Web.UI.Page
                 "<script>alert('Check out date must be after Arrival date');</script>",
                 false);
         }
-        else
+        else if (_numberValidation.IsValid())
         {
             var noOfAdults = Convert.ToInt32(ddlAdults.SelectedValue);
             var noOfChildren = Convert.ToInt32(ddlChildren.SelectedValue);
@@ -105,9 +107,11 @@ public partial class Default2 : System.Web.UI.Page
             Session["pets"] = chkPets.Checked.ToString();
 
 
-            // set session variables for date in, date out, number of rooms and how many people is the booking for
+           
             Response.Redirect("RoomSelection.aspx");
         }
         
     }
+
+    
 }

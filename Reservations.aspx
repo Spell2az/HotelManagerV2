@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Reservations.aspx.cs" Inherits="Reservations" %>
+﻿<%@ Page Title="" EnableEventValidation="false" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Reservations.aspx.cs" Inherits="Reservations" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
@@ -60,7 +60,7 @@
                         <asp:Label runat="server" Text='<%# Eval("amount_to_pay") %>'></asp:Label>
                     </td>
                     <td>
-                        <asp:LinkButton  CommandArgument='<%# Eval("reservation_id") %>' OnClick="handlerCancelReservation" runat="server">Cancel</asp:LinkButton>
+                        <asp:Button CssClass="btn btn-primary" Enabled='<%# DateTime.Today > Convert.ToDateTime(Eval("date_in")) %>' CommandArgument='<%# Eval("reservation_id") %>' OnClick="handlerCancelReservation" runat="server" Text="Cancel"></asp:Button>
                     </td>
                 </tr>
             </ItemTemplate>

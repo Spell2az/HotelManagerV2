@@ -20,7 +20,7 @@ public partial class Default2 : System.Web.UI.Page
         var valueFont = new Font("Arial", 14);
         
         SetupChartCurrentRoomTypes(chtRoomTypesWithCount, reportData.GetRoomTypesWithCount(), titleFont, axisLabelFontLong, axisTitleFont, "Current room types");
-        SetupChartCurrentRoomTypes(chtRoomTypesReservedWithCount, reportData.GetRoomTypesReservedWithCount(), titleFont, axisLabelFontLong, axisTitleFont, "Today's reserved rooms by type");
+        SetupChartCurrentRoomTypes(chtRoomTypesReservedWithCount, reportData.GetRoomTypesReservedWithCount(), titleFont, axisLabelFontLong, axisTitleFont, "Prefered room types");
 
         SetupDoughnutChart(chtSpareRooms, titleFont, axisTitleFont, valueFont, "Today's occupancy", reportData.GetSpareRooms());
         SetupDoughnutChart(chtSpareSpaces, titleFont, axisTitleFont, valueFont, "Today's Spaces Left", reportData.GetSpareSpaces());

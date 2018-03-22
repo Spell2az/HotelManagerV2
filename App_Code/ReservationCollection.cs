@@ -85,7 +85,7 @@ public class ReservationCollection
         dc.AddParameter("@pets", Reservation.Pets);
         dc.AddParameter("@amount_to_pay", Reservation.AmountToPay);
 
-        return dc.Execute("addReservation");
+        return dc.Execute("sprocAddReservation");
     }
 
     public void AddRoomsToReservation()

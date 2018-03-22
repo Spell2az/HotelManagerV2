@@ -60,7 +60,11 @@
                         <asp:Label runat="server" Text='<%# Eval("amount_to_pay") %>'></asp:Label>
                     </td>
                     <td>
-                        <asp:Button CssClass="btn btn-primary" Enabled='<%# DateTime.Today > Convert.ToDateTime(Eval("date_in")) %>' CommandArgument='<%# Eval("reservation_id") %>' OnClick="handlerCancelReservation" runat="server" Text="Cancel"></asp:Button>
+                        <asp:Button CssClass='btn btn-primary' style
+                            Enabled='<%# DateTime.Today <= Convert.ToDateTime(Eval("date_in")) %>' 
+                            CommandArgument='<%# Eval("reservation_id") %>' 
+                            OnClick="handlerCancelReservation" 
+                            runat="server" Text="Cancel"></asp:Button>
                     </td>
                 </tr>
             </ItemTemplate>
